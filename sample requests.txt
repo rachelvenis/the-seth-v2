@@ -1,0 +1,14 @@
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"rachel","birthYear":"1996","unit":"colours","halfUnit":"colours","newToWalden":"0","headStaff":"1","cabin":"colour head staff","role":"unit head","gender":"female"}' \
+  http://localhost:3000/api/staff
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"kari","birthYear":"1996","unit":"colours","halfUnit":"colours","newToWalden":"0","headStaff":"1","cabin":"colour head staff","role":"unit head","gender":"female"}' \
+  http://localhost:3000/api/staff
+
+    curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"name":"karful","birthYear":"1996","unit":"colours","halfUnit":"colours","newToWalden":"0","headStaff":"1","cabin":"colour head staff","role":"unit head","gender":"female"}' \
+  http://localhost:3000/api/staff/2   
