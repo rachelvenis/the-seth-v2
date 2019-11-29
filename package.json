@@ -5,7 +5,7 @@
     "start-be": "node index.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "express": "^4.16.4",
