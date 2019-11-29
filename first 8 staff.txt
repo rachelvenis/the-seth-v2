@@ -1,0 +1,15 @@
+curl --header "Content-Type: application/json" --request POST --data '{"name":"rachel","birthYear":"1996","unit":"colours","halfUnit":"colours","newToWalden":"0","headStaff":"1","cabin":"colour head staff","role":"unit head","gender":"female"}' http://localhost:3000/api/staff
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"kari","birthYear":"1996","unit":"colours","halfUnit":"colours","newToWalden":"0","headStaff":"1","cabin":"colour head staff","role":"unit head","gender":"female"}' http://localhost:3000/api/staff
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"maddie","birthYear":"1996","unit":"comics","halfUnit":"loonies","newToWalden":"0","headStaff":"1","cabin":"comic head staff","role":"unit head","gender":"female"}' http://localhost:3000/api/staff
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"marlie","birthYear":"1996","unit":"cits","halfUnit":"cits","newToWalden":"0","headStaff":"1","cabin":"cit head staff","role":"head of swim","gender":"female"}' http://localhost:3000/api/staff
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"sam","birthYear":"1994","unit":"seekers","halfUnit":"finders","newToWalden":"0","headStaff":"0","cabin":"B2","role":"counsellor","gender":"male"}' http://localhost:3000/api/staff
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"adam","birthYear":"1991","unit":"zods","halfUnit":"stars","newToWalden":"0","headStaff":"0","cabin":"leo","role":"sail","gender":"male"}' http://localhost:3000/api/staff
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"judy","birthYear":"1961","unit":"comics","halfUnit":"loonies","newToWalden":"1","headStaff":"0","cabin":"bugs bunny","role":"counsellor","gender":"female"}' http://localhost:3000/api/staff
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"glenn","birthYear":"1961","unit":"comics","halfUnit":"comics","newToWalden":"1","headStaff":"0","cabin":"comic head staff","role":"head of ski","gender":"male"}' http://localhost:3000/api/staff

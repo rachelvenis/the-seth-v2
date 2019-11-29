@@ -1,18 +1,18 @@
 const Controller = require('./controller');
-const StaffModel  = require('../models/staff-model');
-const StaffEntity = require('../entities/staff-entity');
+const AssignmentModel  = require('../models/assignment-model');
+const AssignmentEntity = require('../entities/assignment-entity');
 
 /**
  * Users Controller
  */
-class StaffController {
+class AssignmentController {
   constructor() {
     this.controller = new Controller();
-    this.staffModel = new StaffModel();
+    this.assignmentModel = new AssignmentModel();
   }
   
   findAll(res) {
-    this.staffModel.findAll()
+    this.assignmentModel.findAll()
       .then(this.controller.findSuccess(res))
       .catch(this.controller.findError(res));
   }
@@ -20,7 +20,7 @@ class StaffController {
   findById(req, res) {
     const id = req.params.id;
     
-    this.staffModel.findById(id)
+    this.assignmentModel.findById(id)
       .then(this.controller.findSuccess(res))
       .catch(this.controller.findError(res));
   }
@@ -28,32 +28,29 @@ class StaffController {
   // findByUsername(req, res) {
   //   const username = req.params.username;
 
-  //   this.staffModel.findByUsername(username)
+  //   this.dayModel.findByUsername(username)
   //     .then(this.controller.findSuccess(res))
   //     .catch(this.controller.findError(res));
   // }
 
+
+
   create(req, res) {
-    const staff = new StaffEntity();
-    staff.birthYear = req.body.birthYear;
-    staff.unit = req.body.unit;
-    staff.halfUnit = req.body.halfUnit;
-    staff.newToWalden = req.body.newToWalden;
-    staff.headStaff = req.body.headStaff;
-    staff.cabin = req.body.cabin;
-    staff.role = req.body.role;
-    staff.gender = req.body.gender;
-    staff.name = req.body.name;
+    const assignment = new AssignmentEntity();
+    assignment.staffId = req.body.staffId;
+    assignment.dayId = req.body.dayId;
+    assignment.type = req.body.type;
+    assignment.halfUnit = req.body.halfUnit;
     
-    this.staffModel.create(staff)
+    this.assignmentModel.create(assignment)
       .then(this.controller.createSuccess(res))
       .catch(this.controller.editError(res));
   }
   
   update(req, res) {
-    const staff = new StaffEntity(req.params.id, req.body.name, req.body.birthYear, req.body.unit, req.body.halfUnit, req.body.newToWalden, req.body.headStaff, req.body.cabin, req.body.role, req.body.gender);
-    
-    this.staffModel.update(staff)
+    const assignment = new AssignmentEntity(req.params.id, req.body.staffId, req.body.dayId, req.body.type, req.body.halfUnit);
+  
+    this.assignmentModel.update(assignment)
       .then(this.controller.editSuccess(res))
       .catch(this.controller.editError(res));
   }
@@ -61,7 +58,7 @@ class StaffController {
   delete(req, res) {
     const id = req.params.id;
     
-    this.staffModel.delete(id)
+    this.assignmentModel.delete(id)
       .then(this.controller.editSuccess(res))
       .catch((error) => {
         if(error.errorCode === 21) {
@@ -74,4 +71,4 @@ class StaffController {
   }
 }
 
-module.exports = StaffController;
+module.exports = AssignmentController;

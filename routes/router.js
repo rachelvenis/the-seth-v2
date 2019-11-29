@@ -9,7 +9,9 @@ router.use((req, res, next) => {
 });
 
 router.use('/staff', require('./staff-router'));
-// router.use('/tabs', require('./tabs-router'));
+router.use('/days', require('./days-router'));
+router.use('/assignments', require('./assignments-router'));
+router.use('/validate', require('./validation-router'));
 // router.use('/tabsuser', require('./tabs-user-router'));
 
 module.exports = router;

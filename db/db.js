@@ -3,6 +3,8 @@ const sqliite3 = require('sqlite3').verbose();
 const db = new sqliite3.Database('./db/sqlite3-database.db');
 
 const init = () => {
+
+    // db.run(`DROP TABLE IF EXISTS staff`);
     db.run(`CREATE TABLE IF NOT EXISTS staff(
       id                INTEGER  PRIMARY KEY  AUTOINCREMENT,
       name              TEXT NOT NULL,
@@ -23,28 +25,36 @@ const init = () => {
       role              TEXT NOT NULL
     )`);
 
-    // db.run(`CREATE TABLE IF NOT EXISTS tab(
-    //   id     INTEGER PRIMARY KEY  AUTOINCREMENT, 
-    //   name   TEXT NOT NULL
-    // )`);
+    db.run(`CREATE TABLE IF NOT EXISTS day(
+      id                    INTEGER  PRIMARY KEY  AUTOINCREMENT,
+      dayOfCamp             INTEGER,
+      rotatingOD            INTEGER NOT NULL,
+      everyoneInCamp        INTEGER NOT NULL,
+      colourChangeover      INTEGER NOT NULL,
+      bunkNight             INTEGER NOT NULL,
+      colourWarsPrep        INTEGER NOT NULL,
+      waldenGamesPrep       INTEGER NOT NULL,
+      unitFieldTrip         TEXT,
+      unitPlay              TEXT,
+      noHeadStaffDayOff     INTEGER NOT NULL,
+      normalOD              INTEGER NOT NULL,
+      unitCanoeTrip         TEXT,
+      cabinOvernight        TEXT,
+      useItOrLooseIt        INTEGER
+    )`);
 
-    // db.run(`CREATE TABLE IF NOT EXISTS tab_users(
-    //   id        INTEGER PRIMARY KEY  AUTOINCREMENT, 
-    //   user_id   INTEGER NOT NULL, 
-    //   tab_id  INTEGER NOT NULL,
-    //   FOREIGN KEY(user_id) REFERENCES user(id),
-    //   FOREIGN KEY(tab_id) REFERENCES tab(id)
-    // )`);
+    db.run(`CREATE TABLE IF NOT EXISTS assignment(
+      id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
+      dayId         INTEGER NOT NULL, 
+      staffId       INTEGER NOT NULL,
+      type          TEXT,
+      halfUnit      TEXT,
+      FOREIGN KEY(dayId) REFERENCES day(id),
+      FOREIGN KEY(staffId) REFERENCES staff(id)
+    )`);
 
-    // db.run(`CREATE TABLE IF NOT EXISTS bill(
-    //   id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
-    //   amount_paid   INTEGER NOT NULL,
-    //   date          DATE NOT NULL,
-    //   by_user_id    INTEGER NOT NULL,
-    //   tab_id      INTEGER NOT NULL,
-    //   FOREIGN KEY(by_user_id) REFERENCES user(id),
-    //   FOREIGN KEY(tab_id) REFERENCES tab(id)
-    // )`);
+    // db.run(`DROP TABLE IF EXISTS assignment`);
+
 };
 
 module.exports = {

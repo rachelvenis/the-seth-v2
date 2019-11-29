@@ -8,7 +8,40 @@ curl --header "Content-Type: application/json" \
   --data '{"name":"kari","birthYear":"1996","unit":"colours","halfUnit":"colours","newToWalden":"0","headStaff":"1","cabin":"colour head staff","role":"unit head","gender":"female"}' \
   http://localhost:3000/api/staff
 
-    curl --header "Content-Type: application/json" \
+  curl --header "Content-Type: application/json" \
   --request PUT \
-  --data '{"name":"karful","birthYear":"1996","unit":"colours","halfUnit":"colours","newToWalden":"0","headStaff":"1","cabin":"colour head staff","role":"unit head","gender":"female"}' \
-  http://localhost:3000/api/staff/2   
+  --data '{"name":"karful","birthYear":"1996","unit":"colours","halfUnit":"colours","newToWalden":"0","headStaff":"1","cabin":"colour head staff","role":"unit head","gender":"fenale"}' \
+  http://localhost:3000/api/staff/2
+
+  curl --header "Content-Type: application/json" \
+  --request DELETE \
+  http://localhost:3000/api/staff/2
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"dayOfCamp" : "1", "rotatingOD" : "1", "everyoneInCamp" : "0", "colourChangeover" : "1", "bunkNight" : "0", "unitFieldTrip" : "", "unitPlay" : "", "noHeadStaffDayOff" : "0", "normalOD" : "1", "unitCanoeTrip" : "", "cabinOvernight" : "", "useItOrLooseIt" : "0", "colourWarsPrep" : "1", "waldenGamesPrep" : "1"}' \
+  http://localhost:3000/api/days
+
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"dayOfCamp" : "1", "rotatingOD" : "1", "everyoneInCamp" : "0", "colourChangeover" : "1", "bunkNight" : "0", "unitFieldTrip" : "", "unitPlay" : "", "noHeadStaffDayOff" : "0", "normalOD" : "1", "unitCanoeTrip" : "", "cabinOvernight" : "", "useItOrLooseIt" : "0", "colourWarsPrep" : "1", "waldenGamesPrep" : "0"}' \
+  http://localhost:3000/api/days
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"dayId" : "1", "staffId" : "1", "type": "OD", "halfUnit": "loonies"}' \
+  http://localhost:3000/api/assignments
+
+  curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"dayId" : "1", "staffId" : "1", "type": "OD", "halfUnit": "toonies"}' \
+  http://localhost:3000/api/assignments/1
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"dayId" : "1", "staffId" : "1", "type": "OD", "halfUnit": "toonies"}' \
+  http://localhost:3000/api/assignments
+
+  curl --header "Content-Type: application/json" \
+  --request DELETE \
+  http://localhost:3000/api/assignments/2
