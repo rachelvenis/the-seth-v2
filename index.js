@@ -13,7 +13,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const port = process.argv[2] || 3000;
+const port = process.argv[2] || 3100;
 app.listen(port, () => {
   console.log(`running on: http://localhost:${port}/`);
 });
