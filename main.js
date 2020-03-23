@@ -2,29 +2,25 @@
 const LoadExampleData = require('./loadExampleData');
 const DayOffValidation = require('./controllers/validations/day-off-validations-controller.js');
 
-// let pastAssignments = [];
-// let newAssignments = [];
-// let allStaff = [];
-// let allDays = [];
-
+let pastAssignments = [];
+let newAssignments = [];
+let allStaff = [];
+let allDays = [];
 
 const loadExampleData = new LoadExampleData();
-loadExampleData.run();
+loadExampleData.run().then((results) => {
+	pastAssignments = results.allPastAssignments;
+	newAssignments = results.allNewAssignments;
+	allStaff = results.allStaff;
+	allDays = results.allDays;
 
-const pastAssignments = loadExampleData.allPastAssignments;
-const newAssignments = loadExampleData.allNewAssignments;
-const allStaff = loadExampleData.allStaff;
-const allDays = loadExampleData.allDays;
+	const hi = new DayOffValidation(allStaff, pastAssignments, allDays);
 
-console.log(pastAssignments);
-console.log(newAssignments);
-console.log(allStaff);
-console.log(allDays);
-// const hi = new DayOffValidation(allStaff, allAssignments, allDays);
-// const result = hi.eachValid([{
-// 	id: 0, 
-// 	staffId: 0, 
-// 	dayId: 0,
-// 	type: "type", 
-// 	halfUnit: "halfUnit"
-// }]);
+	// console.log("allPastAssignments... " + results.allPastAssignments);
+	// console.log("allNewAssignments... " + results.allNewAssignments);
+	// console.log("allStaff... " + results.allStaff);
+	// console.log("allDays... " + results.allDays);
+
+	console.log("eachValid(newAssignments) " + hi.eachValid(results.allNewAssignments));
+	console.log("areValid(newAssignments) " + hi.areValid(results.allNewAssignments));
+  });
