@@ -8,6 +8,7 @@
     "axios": "^0.18.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "csv-parser": "^2.3.2",
     "express": "^4.16.4",
     "node-pre-gyp": "^0.14.0",
     "nodemon": "^1.18.9",
