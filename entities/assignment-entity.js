@@ -1,5 +1,5 @@
 /**
- * Staff Entity
+ * Assignment Entity
  */
 class AssignmentEntity {
   constructor(id, staffId, dayId, type, halfUnit){

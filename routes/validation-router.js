@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const ValidationController = require('../controllers/validation-controller');
+const ValidationController = require('../controllers/validations/	validation-controller');
 const validationController = new ValidationController();
 
 router.get('/', (req, res) => {

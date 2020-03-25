@@ -1,0 +1,14 @@
+name,birthYear,unit,halfUnit,newToWalden,headStaff,cabin,role,gender
+rachel,1996,colours,colours,FALSE,FALSE,yellow,sail,female
+kari,1996,colours,colours,FALSE,FALSE,yellow,sail,female
+maddie,1996,comics,loonies,FALSE,TRUE,comic head staff,unit head,female
+marlie,1996,cits,cits,FALSE,TRUE,cit head staff,head of swim,female
+sam,1994,seekers,finders,FALSE,FALSE,B2,counsellor,male
+adam,1991,zods,stars,FALSE,FALSE,leo,sail,male
+judy,1961,colours,loonies,TRUE,FALSE,yellow,counsellor,female
+glenn,1961,colours,toonies,TRUE,TRUE,zod head staff,head of ski,male
+leila,1996,colours,loonies,TRUE,FALSE,yellow,counsellor,female
+katie,1996,zods,planets,TRUE,FALSE,libra,counsellor,female
+sarah,2000,comics,toonies,TRUE,FALSE,road runners,swim,female
+matt,1996,seekers,finders,FALSE,FALSE,B2,counsellor,male
+natalie,1996,seekers,finders,FALSE,FALSE,G1,counsellor,female
