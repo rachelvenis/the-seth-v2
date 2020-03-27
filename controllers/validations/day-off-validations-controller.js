@@ -14,16 +14,16 @@ let allDays = [];
 
 let areValidErrorMessages = [];
 
-const currentYear = 2019
+// const currentYear = 2019
 
 let errorMessage = "";
 class DayOffValidationController extends ValidationController {
   constructor(allStaffIn, allAssignmentsIn, allDaysIn) {
     super()     
     // this.validationModel = new ValidationModel();
-    allStaff = allStaffIn;
-    allAssignments = allAssignmentsIn;
-    allDays = allDaysIn;
+    this.allStaff = allStaffIn;
+    this.allAssignments = allAssignmentsIn;
+    this.allDays = allDaysIn;
   }
 
   eachValid(assignments) {
@@ -43,9 +43,9 @@ class DayOffValidationController extends ValidationController {
   }
 
   isValid(assignment) {
-  	const staff = allStaff[assignment.staffId];
-  	const day = allDays[assignment.dayId];
-  	const nextDay = allDays[assignment.dayId + 1];
+  	const staff = this.allStaff[assignment.staffId];
+  	const day = this.allDays[assignment.dayId];
+  	const nextDay = this.allDays[assignment.dayId + 1];
   	return this.threeNightsBetween(staff, day) &&
            this.everyoneInCamp(day) && this.noHeadStaffDayOff(staff, day) &&
            this.haveDayOffLeft(staff) &&
@@ -60,11 +60,11 @@ class DayOffValidationController extends ValidationController {
 
   updateOlderQuotas(allStaff) {
     let pastCount = 0;
-    for (let i = 0; i < allStaff.length; i++) {
-      if (!allStaff[i].headStaff &&
-        allStaff[i].birthYear <= (currentYear - 19)) {
-        let key = allStaff[i].role == "counsellor" ?
-          allStaff[i].halfUnit : allStaff[i].role;
+    for (let i = 0; i < this.allStaff.length; i++) {
+      if (!this.allStaff[i].headStaff &&
+        this.allStaff[i].birthYear <= (this.currentYear - 19)) {
+        let key = this.allStaff[i].role == "counsellor" ?
+          this.allStaff[i].halfUnit : this.allStaff[i].role;
         pastCount = key in olderQuotas ? olderQuotas[key] : 0;
         olderQuotas[key] = pastCount + 1;
       }
@@ -74,8 +74,8 @@ class DayOffValidationController extends ValidationController {
 
 updateSeekerCabinQuotas(allStaff){
     let pastCount = 0;
-    for (let i = 0; i < allStaff.length; i++){
-      let currentStaff = allStaff[i];
+    for (let i = 0; i < this.allStaff.length; i++){
+      let currentStaff = this.allStaff[i];
       if (currentStaff.unit == "seekers"){
         pastCount= currentStaff.cabin in seekerCabinQuotas ? seekerCabinQuotas[currentStaff.cabin] : 0;
         seekerCabinQuotas[currentStaff.cabin] = pastCount + 1;
@@ -85,10 +85,11 @@ updateSeekerCabinQuotas(allStaff){
 
   updateCabinCounsellorQuotas(allStaff){
     let pastCount = 0;
-    for (let i = 0; i < allStaff.length; i++){
-      if (allStaff[i].role == "counsellor"){
-        pastCount= allStaff[i].cabin in cabinCounsellorQuotas ? cabinCounsellorQuotas[allStaff[i].cabin] : 0;
-        cabinCounsellorQuotas[allStaff[i].cabin] = pastCount + 1;
+    for (let i = 0; i < this.allStaff.length; i++){
+      if (this.allStaff[i].role == "counsellor"){
+        pastCount = this.allStaff[i].cabin in cabinCounsellorQuotas ?
+          cabinCounsellorQuotas[this.allStaff[i].cabin] : 0;
+        cabinCounsellorQuotas[this.allStaff[i].cabin] = pastCount + 1;
       }
     }
   }
@@ -144,29 +145,25 @@ updateSeekerCabinQuotas(allStaff){
   //individual validations
   unitTrip(staff, day){
     let result = !staff.unit == day.unitFieldTrip; 
-    if (!result) isValidErrorMessages.push("unitTrip - " +
-      staff.name);
+    if (!result) isValidErrorMessages.push("unitTrip - " + staff.name);
     return result;
   }
 
   unitPlay(staff, day){
     let result = !staff.unit == day.unitPlay;
-    if (!result) isValidErrorMessages.push("unitPlay - " +
-      staff.name);
+    if (!result) isValidErrorMessages.push("unitPlay - " + staff.name);
     return result;
   }
 
   noHeadStaffDayOff(staff, day){
     let result = staff.headStaff ? !day.noHeadStaffDayOff : true;
-    if (!result) isValidErrorMessages.push("noHeadStaffDayOff - " +
-      staff.name);
+    if (!result) isValidErrorMessages.push("noHeadStaffDayOff - " + staff.name);
     return result;
   }
 
   haveDayOffsLeft(staff){
     let result = staff.dayOffCount<=staff.allowedDaysOff; 
-    if (!result) isValidErrorMessages.push("haveDayOffsLeft - " +
-      staff.name);
+    if (!result) isValidErrorMessages.push("haveDayOffsLeft - " + staff.name);
     return result;
   }
 
@@ -180,8 +177,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = staff.lastDayOff != 0 ?
       day.dayOfCamp - staff.lastDayOff > 4 :
       true;
-    if (!result) isValidErrorMessages.push("threeNightsBetween - " +
-      staff.name);
+    if (!result) isValidErrorMessages.push("threeNightsBetween - " + staff.name);
     return result;
   }
 
@@ -190,21 +186,19 @@ updateSeekerCabinQuotas(allStaff){
     let currentCabinCounts =  {};
     let pastCount = 0;
     for (let i = 0; i < assignments.length; i++){
-      let currentStaff = allStaff[assignments[i].staffId];
+      let currentStaff = this.allStaff[assignments[i].staffId];
       if (currentStaff.role == "counsellor" && !currentStaff.unit == "seekers"){
         pastCount = currentStaff.cabin in currentCabinCounts ? currentCabinCounts[currentStaff.cabin] : 0;
         currentCabinCounts[currentStaff.cabin] = pastCount + 1;
       }
     }
     let result = true;
-    // Iterator it = currentCabinCounts.entrySet().iterator();
-    // while (it.hasNext()) {
-    //   Map.Entry pair = (Map.Entry)it.next();
-    //   if ((cabinCounsellorQuotas.get(pair.getKey())/2)<(int) pair.getValue()){
-    //     areValidErrorMessages.add("halfCounsellors - " + pair.getKey());
-    //     let result = false;
-    //   }
-    // }
+    for(const cabin in currentCabinCounts) {
+      if ((cabinCounsellorQuotas[cabin]/2) < currentCabinCounts[cabin]){
+        areValidErrorMessages.add("halfCounsellors - " + cabin);
+        let result = false;
+      }
+    }
     return result;
   }
 
@@ -212,34 +206,33 @@ updateSeekerCabinQuotas(allStaff){
     let currentQuotaCounts =  {};
     let pastCount = 0;
     for (let i = 0; i < assignments.length; i++){
-      let currentStaff = allStaff[assignments[i].staffId];
+      let currentStaff = this.allStaff[assignments[i].staffId];
       let key = currentStaff.role == "counsellor" ?
         currentStaff.halfUnit : currentStaff.role;
       if (currentStaff.role == "counsellor") {
-        pastCount = key in currentQuotaCounts ?
-          currentQuotaCounts[key] : 0;
+        pastCount = key in currentQuotaCounts ? currentQuotaCounts[key] : 0;
         currentQuotaCounts[key] = pastCount + 1;
       }
     }
     let result = true;
-    // Iterator it = currentQuotaCounts.entrySet().iterator();
-    // while (it.hasNext()) {
-    //   Map.Entry pair = (Map.Entry)it.next();
-    //   if ((olderQuotas.get(pair.getKey())/3)<(int) pair.getValue()){
-    //     areValidErrorMessages.add("oneThirdOfOlder - " + pair.getKey());
-    //     let result = false;
-    //   }
-    // }
+    for(const quota in currentQuotaCounts) {
+      if ((olderQuotas[quota]/3) < currentQuotaCounts[quota]){
+        areValidErrorMessages.add("oneThirdOfOlder - " + pair.getKey());
+        let result = false;
+      }
+    }
     return result;
   }
+
   specialtyQuota(allStaff, assignments){
     let currentSpecialtyCounts =  {};
     let pastCount = 0;
     let newCount = 0;
     for (let i = 0; i < assignments.length; i++){
-      let currentStaff = allStaff[assignments[i].staffId]; 
+      let currentStaff = this.allStaff[assignments[i].staffId]; 
       if (!currentStaff.role == "counsellor" && !currentStaff.headStaff) {
-        pastCount = currentStaff.cabin in currentSpecialtyCounts ? currentSpecialtyCounts[currentStaff.cabin] : 0;
+        pastCount = currentStaff.cabin in currentSpecialtyCounts ?
+          currentSpecialtyCounts[currentStaff.cabin] : 0;
         newCount = pastCount + 1;
         if (newCount > specialtyQuotas[currentStaff.role]){
           areValidErrorMessages.push("specialtyQuota");
@@ -254,21 +247,19 @@ updateSeekerCabinQuotas(allStaff){
     let currentQuotaCounts =  {};
     let pastCount = 0;
     for (let i = 0; i < assignments.length;i++){
-      let currentStaff = allStaff[assignments[i].staffId];
+      let currentStaff = this.allStaff[assignments[i].staffId];
       if (currentStaff.unit == "seekers"){
         pastCount = currentStaff.cabin in currentQuotaCounts ? currentQuotaCounts[currentStaff.cabin] : 0;
         currentQuotaCounts[currentStaff.cabin] = pastCount + 1;
       }
     }
     let result = true;
-    // Iterator it = currentQuotaCounts.entrySet().iterator();
-    // while (it.hasNext()) {
-    //   Map.Entry pair = (Map.Entry)it.next();
-    //   if ((seekerCabinQuotas.get(pair.getKey())/2)<(int) pair.getValue()){
-    //     areValidErrorMessages.push("seekerCabinQuota - " + pair.getKey());
-    //     let result = false;
-    //   }
-    // }
+    for(const quota in currentQuotaCounts) {
+      if ((seekerCabinQuotas[quota]/2) < currentQuotaCounts[quota]){
+        areValidErrorMessages.push("seekerCabinQuota - " + quota);
+        let result = false;
+      }
+    }
     return result;
   }
 }
