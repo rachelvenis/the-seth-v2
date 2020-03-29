@@ -2,19 +2,16 @@ const Controller = require('../controller');
 const ValidationModel  = require('../../models/validation-model');
 
 class ValidationController {
-	currentYear=2018;
-	allStaff;
-	allDays;
-	pastAssignments;
-	isValidErrorMessages = [];
-	areValidErrorMessages = [];
-	errorMessage = "";
-
-
 	Validations(allStaff, allDays, pastAssignments){
 		this.allStaff = allStaff;
 		this.allDays = allDays;
 		this.pastAssignments = pastAssignments;
+
+
+		let currentYear = 2018;
+		let isValidErrorMessages = [];
+		let areValidErrorMessages = [];
+		let errorMessage = "";
 		updateFromPastAssignments();
 	}
 
