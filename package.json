@@ -2,7 +2,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "start-be": "node index.js"
+    "start-be": "node index.js",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.18.1",
@@ -17,7 +18,8 @@
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.0.0",
+    "jest": "^25.2.3"
   },
   "private": true,
   "name": "the-seth-v2",

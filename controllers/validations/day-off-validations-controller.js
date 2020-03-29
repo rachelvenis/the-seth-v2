@@ -144,13 +144,13 @@ updateSeekerCabinQuotas(allStaff){
 
   //individual validations
   unitTrip(staff, day){
-    let result = !staff.unit == day.unitFieldTrip; 
+    let result = !(staff.unit == day.unitFieldTrip); 
     if (!result) isValidErrorMessages.push("unitTrip - " + staff.name);
     return result;
   }
 
   unitPlay(staff, day){
-    let result = !staff.unit == day.unitPlay;
+    let result = !(staff.unit == day.unitPlay);
     if (!result) isValidErrorMessages.push("unitPlay - " + staff.name);
     return result;
   }
@@ -162,7 +162,7 @@ updateSeekerCabinQuotas(allStaff){
   }
 
   haveDayOffsLeft(staff){
-    let result = staff.dayOffCount<=staff.allowedDaysOff; 
+    let result = staff.dayOffCount <= staff.allowedDaysOff; 
     if (!result) isValidErrorMessages.push("haveDayOffsLeft - " + staff.name);
     return result;
   }
