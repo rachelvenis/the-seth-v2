@@ -21,12 +21,12 @@ let rachy = new StaffEntity(0,
 let dayAlwaysValidWithRachy = new DayEntity(0,
   		1, // dayOfCamp
   		false, // rotatingOD
-  		true, // everyoneInCamp
+  		false, // everyoneInCamp
   		false, // colourChangeover
   		true, // bunkNight
   		"colours", // unitFieldTrip
-  		"", // unitPlay
-  		true, // noHeadStaffDayOff
+  		"colours", // unitPlay
+  		false, // noHeadStaffDayOff
   		false, // normalOD
   		"", // unitCanoeTrip
   		"", // cabinOvernight
@@ -59,35 +59,41 @@ let dayAlwaysInvalidWithRachy = new DayEntity(0,
 
 test('a unitTrip test', () => {
   let staff = rachy;
-  let day = dayAlwaysInvalidWithRachy;
+  let invalidDay = dayAlwaysInvalidWithRachy;
+  let validDay = dayAlwaysValidWithRachy;
   dayOffValidationController = new DayOffValidationController(
   	[staff], //allstaff
-  	[day], //alldays
+  	[invalidDay, validDay], //alldays
   	[]); //pastassignment
-  expect(dayOffValidationController.unitTrip(staff, day)).toBe(false);
+  expect(dayOffValidationController.unitTrip(staff, invalidDay)).toBe(false);
+  expect(dayOffValidationController.unitTrip(staff, validDay)).toBe(true);
 });
 
 test('a unitPlay test', () => {
   let staff = rachy;
-  let day = dayAlwaysInvalidWithRachy;
+  let invalidDay = dayAlwaysInvalidWithRachy;
+  let validDay = dayAlwaysValidWithRachy;
   dayOffValidationController = new DayOffValidationController(
-  	[staff], //allstaff
-  	[day], //alldays
-  	[]); //pastassignment
-  expect(dayOffValidationController.unitPlay(staff, day)).toBe(false);
+    [staff], //allstaff
+    [invalidDay, validDay], //alldays
+    []); //pastassignment
+  expect(dayOffValidationController.unitPlay(staff, invalidDay)).toBe(false);
+  expect(dayOffValidationController.unitPlay(staff, validDay)).toBe(true);
 });
 
 test('a noHeadStaffDayOff test', () => {
   let staff = rachy;
-  let day = dayAlwaysInvalidWithRachy;
+  let invalidDay = dayAlwaysInvalidWithRachy;
+  let validDay = dayAlwaysValidWithRachy;
   dayOffValidationController = new DayOffValidationController(
-  	[staff], //allstaff
-  	[day], //alldays
-  	[]); //pastassignment
-  expect(dayOffValidationController.noHeadStaffDayOff(staff, day)).toBe(false);
+    [staff], //allstaff
+    [invalidDay, validDay], //alldays
+    []); //pastassignment
+  expect(dayOffValidationController.noHeadStaffDayOff(staff, invalidDay)).toBe(false);
+  expect(dayOffValidationController.noHeadStaffDayOff(staff, validDay)).toBe(true);
 });
 
-test('a haveDayOffsLeft test', () => {
+test('WIPa haveDayOffsLeft test', () => {
   let staff = rachy;
   let day = dayAlwaysInvalidWithRachy;
   dayOffValidationController = new DayOffValidationController(
@@ -100,16 +106,18 @@ test('a haveDayOffsLeft test', () => {
 
 test('a everyoneInCamp test', () => {
   let staff = rachy;
-  let day = dayAlwaysInvalidWithRachy;
+  let invalidDay = dayAlwaysInvalidWithRachy;
+  let validDay = dayAlwaysValidWithRachy;
   dayOffValidationController = new DayOffValidationController(
-  	[staff], //allstaff
-  	[day], //alldays
-  	[]); //pastassignment
-  expect(dayOffValidationController.everyoneInCamp(day)).toBe(false);
+    [staff], //allstaff
+    [invalidDay, validDay], //alldays
+    []); //pastassignment
+  expect(dayOffValidationController.everyoneInCamp(invalidDay)).toBe(false);
+  expect(dayOffValidationController.everyoneInCamp(validDay)).toBe(true);
 });
 
 
-test('a threeNightsBetween test', () => {
+test('WIPa threeNightsBetween test', () => {
   let staff = rachy;
   let day = dayAlwaysInvalidWithRachy;
   dayOffValidationController = new DayOffValidationController(
