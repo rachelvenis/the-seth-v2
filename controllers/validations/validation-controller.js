@@ -1,28 +1,25 @@
 const Controller = require('../controller');
 const ValidationModel  = require('../../models/validation-model');
 
+let isValidErrorMessages = [];
+
 class ValidationController {
-	Validations(allStaff, allDays, pastAssignments){
-		this.allStaff = allStaff;
-		this.allDays = allDays;
-		this.pastAssignments = pastAssignments;
+	constructor(allStaffIn, allDaysIn, pastAssignmentsIn){
+		this.allStaff = allStaffIn;
+		this.allDays = allDaysIn;
+		this.pastAssignments = pastAssignmentsIn;
 
 
-		let currentYear = 2018;
-		let isValidErrorMessages = [];
-		let areValidErrorMessages = [];
-		let errorMessage = "";
-		updateFromPastAssignments();
-	}
-
-	Validations(allStaff, allDays){
-		this.allStaff = allStaff;
-		this.allDays = allDays;
+		this.currentYear = 2018;
+		this.isValidErrorMessages = [];
+		this.areValidErrorMessages = [];
+		this.errorMessage = "";
+		// this.updateFromPastAssignments();
 	}
 
 	updateFromPastAssignments(){
-		for (i = 0; i < pastAssignments.size(); i++){
-			allStaff[pastAssignments[i].getStaffIndex()]
+		for (let i = 0; i < this.pastAssignments.length; i++){
+			allStaff[this.pastAssignments[i].staffId]
 				.incrementDayOffCount();
 		}
 	}
@@ -30,32 +27,29 @@ class ValidationController {
 	setAllAssignments(newPastAssignments){
 		pastAssignments = newPastAssignments;
 	}
-	
+	// TODO should be half unit not unit
+	// TODO isCounsellor is duplicate logic here - added for testing. should be removed.
 	canoeTrip(staff, day){
-		result = !staff.getUnit() == day.getUnitCanoeTrip();
-		if (!result) isValidErrorMessages
-			.push("canoeTrip - " + staff.getName());
-		return result;
+		let result = !(staff.unit == day.unitCanoeTrip);
+		if (!result) isValidErrorMessages.push("canoeTrip - " + staff.name);
+		return this.isCounsellor(staff) ? result : true;
 	}
 	colourCounsellorOvernight(staff, day){
-		result = staff.getUnit() == "colours" ? 
-			!staff.getCabin() == day.getCabinOvernight() :
+		let result = staff.unit == "colours" ? 
+			!staff.cabin == day.cabinOvernight :
 			true;
-		if (!result) isValidErrorMessages
-			.push("colourCounsellorOvernight - " + staff.getName());
-		return result;
+		if (!result) isValidErrorMessages.push("colourCounsellorOvernight - " + staff.name);
+		return this.isCounsellor(staff) ? result : true;
 	}
 	colourCounsellorChangeover(staff, day){
-		result = staff.getUnit() == "colours" ? 
-			!day.getColourChangeover() :
+		let result = staff.unit == "colours" ? 
+			!day.colourChangeover :
 			true;
-		if (!result) isValidErrorMessages
-			.push("colourCounsellorChangeover - " + staff.getName()
-				+ ", " + day.getDayOfCamp());
-		return result;
+		if (!result) isValidErrorMessages.push("colourCounsellorChangeover - " + staff.name + ", " + day.dayOfCamp);
+		return this.isCounsellor(staff) ? result : true;
 	}
 	isCounsellor(staff){
-		return staff.getRole() == "counsellor";
+		return staff.role == "counsellor";
 	}
 
 }

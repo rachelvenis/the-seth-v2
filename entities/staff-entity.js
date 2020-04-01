@@ -14,6 +14,14 @@ class StaffEntity {
 	this.gender = gender;
 	this.name = name;
   }
+
+  setColourWarsDuty(value) {
+  	this.colourWarsDuty = value;
+  }
+
+  setWaldenGamesDuty(value) {
+  	this.waldenGamesDuty = value;
+  }
 }
 
 module.exports = StaffEntity;
