@@ -8,7 +8,12 @@ class ODValidations extends ValidationController {
 		this.allStaff = allStaffIn;
 		this.pastAssignments = pastAssignmentsIn;
 		this.allDays = allDaysIn;
+		this.globalRoundOfOD = 1;
 	}
+
+    setglobalRoundOfOD(value) {
+  	  this.globalRoundOfOD = value;
+    }
 
 	eachValid(assignments) {
 		let result = true;
@@ -34,37 +39,36 @@ class ODValidations extends ValidationController {
 		   this.hasWaldenGamesDuties(staff, day) &&
 	       this.numberOfODsDone(staff) &&
 	       this.regularStaff(staff) &&
-	       this.onDayOff(staff, day) &&
-	       this.threeNightsBetween(staff, day); 
+	       this.onDayOff(staff, day); 
 	}
 
 	hasColourWarsDuties(staff, day){
 	    let result = staff.colourWarsDuty ? !day.colourWarsPrep : true; 
 	    if (!result) this.isValidErrorMessages.push("hasColourWarsDuties - " + staff.name);
-	    return result;
+		return result;
 	}
 	hasWaldenGamesDuties(staff, day){
 		let result = staff.waldenGamesDuty ? !day.waldenGamesPrep : true; 
 	    if (!result) this.isValidErrorMessages.push("hasWaldenGamesDuties - " + staff.name);
-	    return result;
+		return result;
 	}
 	// TODO comparision with some global variable storing 'round of ODs'
 	numberOfODsDone(staff){
-	    let result = true; //!(staff.unit == day.unitFieldTrip); 
+	    let result = staff.ODCount < this.globalRoundOfOD; 
 	    if (!result) this.isValidErrorMessages.push("numberOfODsDone - " + staff.name);
-	    return result;
+		return result;
 	}
 	// TODO account for LTeam
 	regularStaff(staff){
 	    let result = !staff.headStaff; 
 	    if (!result) this.isValidErrorMessages.push("regularStaff - " + staff.name);
-	    return result;
+		return result;
 	}
 	// TODO need to get this from database?
 	onDayOff(staff, day){
 	    let result = true; 
 	    if (!result) this.isValidErrorMessages.push("onDayOff - " + staff.name);
-	    return result;
+		return result;
 	}
 
 }

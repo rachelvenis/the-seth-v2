@@ -95,14 +95,16 @@ test('a hasWaldenGamesDuties test', () => {
 
 test('a numberOfODsDone test', () => {
   let staff = rachy;
-  let invalidDay = dayAlwaysInvalidWithRachy;
-  let validDay = dayAlwaysValidWithRachy;
+  staff.setODCount(1);
+  let staff2 = rachy2;
+  staff2.setODCount(0);
   oDValidationController = new ODValidationController(
     [staff], //allstaff
-    [invalidDay, validDay], //alldays
+    [], //alldays
     []); //pastassignment
-  // expect(oDValidationController.numberOfODsDone(staff, invalidDay)).toBe(false);
-  expect(oDValidationController.numberOfODsDone(staff, validDay)).toBe(true);
+  oDValidationController.setglobalRoundOfOD(1)
+  expect(oDValidationController.numberOfODsDone(staff)).toBe(false);
+  expect(oDValidationController.numberOfODsDone(staff2)).toBe(true);
 });
 
 

@@ -2,8 +2,8 @@
  * Assignment Entity
  */
 class AssignmentEntity {
-  constructor(id, staffId, dayId, type, halfUnit){
-	this.id = id; 
+  constructor(staffId, dayId, type, halfUnit){
+	this.id = 0; 
 	this.staffId = staffId; 
 	this.dayId = dayId; 
 	this.type = type; 

@@ -1,6 +1,7 @@
 
 const LoadExampleData = require('./loadExampleData');
 const DayOffValidation = require('./controllers/validations/day-off-validations-controller.js');
+const DistributeODs = require('./controllers/distribute-ods.js');
 
 let pastAssignments = [];
 let newAssignments = [];
@@ -23,4 +24,7 @@ loadExampleData.run().then((results) => {
 
 	console.log("eachValid(newAssignments) " + hi.eachValid(results.allNewAssignments));
 	console.log("areValid(newAssignments) " + hi.areValid(results.allNewAssignments));
+
+	let distributeODs = new DistributeODs(allStaff, pastAssignments, allDays);
+	distributeODs.getODAssignments(allDays[1])
   });

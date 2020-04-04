@@ -13,6 +13,7 @@ class StaffEntity {
 	this.role = role;
 	this.gender = gender;
 	this.name = name;
+    this.ODCount = 0;
   }
 
   setColourWarsDuty(value) {
@@ -21,6 +22,14 @@ class StaffEntity {
 
   setWaldenGamesDuty(value) {
   	this.waldenGamesDuty = value;
+  }
+
+  setODCount(value) {
+  	this.ODCount = value;
+  }
+
+  incrementODCount() {
+    this.ODCount = this.ODCount + 1;
   }
 }
 

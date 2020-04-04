@@ -6,7 +6,7 @@ class ODAssignmentEntity {
 	this.id = 0; 
 	this.staffId = staffId; 
 	this.dayId = dayId; 
-	this.type = type; 
+	this.type = "OD"; 
 	this.halfUnit = halfUnit;
   }
 }
