@@ -42,7 +42,7 @@ class DistributeODs {
 						console.log("error message in getODAssignments, couldn't find an " + i + "th " + gender + " for " + unit);
 	    				// if (!result) this.isValidErrorMessages.push("hasColourWarsDuties - " + staff.name);
 					} else {
-						console.log("assigned " + staff.name + ", " + unit + ", " + gender);
+						console.log("assigned " + staff.firstName + " " + staff.lastName + ", " + unit + ", " + gender);
 						result.push(new ODAssignment(day, staff, unit));
 					}
 				}

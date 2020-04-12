@@ -56,7 +56,7 @@ class ValidationModel {
       day.dayOfCamp - staff.lastDayOff > 4 :
       true;
     if (!result){
-      isValidErrorMessages += "threeNightsBetween - " + staff.name;
+      isValidErrorMessages += "threeNightsBetween - " + staff.firstName + staff.lastName;
     }
     return result;
   }

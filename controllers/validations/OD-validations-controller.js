@@ -44,30 +44,30 @@ class ODValidations extends ValidationController {
 
 	hasColourWarsDuties(staff, day){
 	    let result = staff.colourWarsDuty ? !day.colourWarsPrep : true; 
-	    if (!result) this.isValidErrorMessages.push("hasColourWarsDuties - " + staff.name);
+	    if (!result) this.isValidErrorMessages.push("hasColourWarsDuties - " + staff.firstName + staff.lastName);
 		return result;
 	}
 	hasWaldenGamesDuties(staff, day){
 		let result = staff.waldenGamesDuty ? !day.waldenGamesPrep : true; 
-	    if (!result) this.isValidErrorMessages.push("hasWaldenGamesDuties - " + staff.name);
+	    if (!result) this.isValidErrorMessages.push("hasWaldenGamesDuties - " + staff.firstName + staff.lastName);
 		return result;
 	}
 	// TODO comparision with some global variable storing 'round of ODs'
 	numberOfODsDone(staff){
 	    let result = staff.ODCount < this.globalRoundOfOD; 
-	    if (!result) this.isValidErrorMessages.push("numberOfODsDone - " + staff.name);
+	    if (!result) this.isValidErrorMessages.push("numberOfODsDone - " + staff.firstName + staff.lastName);
 		return result;
 	}
 	// TODO account for LTeam
 	regularStaff(staff){
 	    let result = !staff.headStaff; 
-	    if (!result) this.isValidErrorMessages.push("regularStaff - " + staff.name);
+	    if (!result) this.isValidErrorMessages.push("regularStaff - " + staff.firstName + staff.lastName);
 		return result;
 	}
 	// TODO need to get this from database?
 	onDayOff(staff, day){
 	    let result = true; 
-	    if (!result) this.isValidErrorMessages.push("onDayOff - " + staff.name);
+	    if (!result) this.isValidErrorMessages.push("onDayOff - " + staff.firstName + staff.lastName);
 		return result;
 	}
 

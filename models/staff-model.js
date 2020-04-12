@@ -22,7 +22,7 @@ class StaffModel {
         const staff = [];
         
         for(const row of rows) {
-          staff.push(new StaffEntity(row.id, row.name, row.birth_year, row.unit, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender));
+          staff.push(new StaffEntity(row.id, row.firstName, row.lastName, row.birth_year, row.unit, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender));
         }
         
         return staff;
@@ -44,7 +44,7 @@ class StaffModel {
     
     return this.model.findOne(sql, params)
       .then((row) => {
-        return new StaffEntity(row.id, row.name, row.birth_year, row.unit, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender);
+        return new StaffEntity(row.id, row.firstName, row.lastName, row.birth_year, row.unit, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender);
       });
   }
 

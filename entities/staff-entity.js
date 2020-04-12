@@ -2,7 +2,7 @@
  * Staff Entity
  */
 class StaffEntity {
-  constructor(id, name, birthYear, unit, halfUnit, newToWalden, headStaff, cabin, role, gender){
+  constructor(id, firstName, lastName, birthYear, unit, halfUnit, newToWalden, headStaff, cabin, role, gender){
 	this.id = id;
 	this.birthYear = birthYear;
 	this.unit = unit;
@@ -12,7 +12,8 @@ class StaffEntity {
 	this.cabin = cabin;
 	this.role = role;
 	this.gender = gender;
-	this.name = name;
+  this.firstName = firstName;
+  this.lastName = lastName;
     this.ODCount = 0;
   }
 

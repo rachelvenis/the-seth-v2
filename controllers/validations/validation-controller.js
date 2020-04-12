@@ -31,21 +31,21 @@ class ValidationController {
 	// TODO isCounsellor is duplicate logic here - added for testing. should be removed.
 	canoeTrip(staff, day){
 		let result = !(staff.unit == day.unitCanoeTrip);
-		if (!result) isValidErrorMessages.push("canoeTrip - " + staff.name);
+		if (!result) isValidErrorMessages.push("canoeTrip - " + staff.firstName + staff.lastName);
 		return this.isCounsellor(staff) ? result : true;
 	}
 	colourCounsellorOvernight(staff, day){
 		let result = staff.unit == "colours" ? 
 			!staff.cabin == day.cabinOvernight :
 			true;
-		if (!result) isValidErrorMessages.push("colourCounsellorOvernight - " + staff.name);
+		if (!result) isValidErrorMessages.push("colourCounsellorOvernight - " + staff.firstName + staff.lastName);
 		return this.isCounsellor(staff) ? result : true;
 	}
 	colourCounsellorChangeover(staff, day){
 		let result = staff.unit == "colours" ? 
 			!day.colourChangeover :
 			true;
-		if (!result) isValidErrorMessages.push("colourCounsellorChangeover - " + staff.name + ", " + day.dayOfCamp);
+		if (!result) isValidErrorMessages.push("colourCounsellorChangeover - " + staff.firstName + staff.lastName + ", " + day.dayOfCamp);
 		return this.isCounsellor(staff) ? result : true;
 	}
 	isCounsellor(staff){

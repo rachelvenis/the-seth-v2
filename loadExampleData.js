@@ -59,7 +59,8 @@ class LoadExampleData {
 		  .on('data', (row) => {
 		  	allStaff.push(new StaffEntity(
 			  staffId,
-			  row['name'],
+			  row['firstName'],
+			  row['lastName'],
 			  parseInt(row['birthYear']),
 			  row['unit'],
 			  row['halfUnit'],

@@ -145,25 +145,25 @@ updateSeekerCabinQuotas(allStaff){
   //individual validations
   unitTrip(staff, day){
     let result = !(staff.unit == day.unitFieldTrip); 
-    if (!result) isValidErrorMessages.push("unitTrip - " + staff.name);
+    if (!result) isValidErrorMessages.push("unitTrip - " + staff.firstName + staff.lastName);
     return result;
   }
 
   unitPlay(staff, day){
     let result = !(staff.unit == day.unitPlay);
-    if (!result) isValidErrorMessages.push("unitPlay - " + staff.name);
+    if (!result) isValidErrorMessages.push("unitPlay - " + staff.firstName + staff.lastName);
     return result;
   }
 
   noHeadStaffDayOff(staff, day){
     let result = staff.headStaff ? !day.noHeadStaffDayOff : true;
-    if (!result) isValidErrorMessages.push("noHeadStaffDayOff - " + staff.name);
+    if (!result) isValidErrorMessages.push("noHeadStaffDayOff - " + staff.firstName + staff.lastName);
     return result;
   }
 
   haveDayOffsLeft(staff){
     let result = staff.dayOffCount <= staff.allowedDaysOff; 
-    if (!result) isValidErrorMessages.push("haveDayOffsLeft - " + staff.name);
+    if (!result) isValidErrorMessages.push("haveDayOffsLeft - " + staff.firstName + staff.lastName);
     return result;
   }
 
@@ -177,7 +177,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = staff.lastDayOff != 0 ?
       day.dayOfCamp - staff.lastDayOff > 4 :
       true;
-    if (!result) isValidErrorMessages.push("threeNightsBetween - " + staff.name);
+    if (!result) isValidErrorMessages.push("threeNightsBetween - " + staff.firstName + staff.lastName);
     return result;
   }
 
