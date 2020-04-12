@@ -39,7 +39,7 @@ class StaffController {
     staff.unit = req.body.unit;
     staff.halfUnit = req.body.halfUnit;
     staff.newToWalden = req.body.newToWalden;
-    staff.headStaff = req.body.headStaff;
+    staff.staffType = req.body.staffType;
     staff.cabin = req.body.cabin;
     staff.role = req.body.role;
     staff.gender = req.body.gender;

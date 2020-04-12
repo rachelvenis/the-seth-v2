@@ -2,13 +2,13 @@
  * Staff Entity
  */
 class StaffEntity {
-  constructor(id, firstName, lastName, birthYear, unit, halfUnit, newToWalden, headStaff, cabin, role, gender){
+  constructor(id, firstName, lastName, birthYear, unit, halfUnit, newToWalden, staffType, cabin, role, gender){
 	this.id = id;
 	this.birthYear = birthYear;
 	this.unit = unit;
 	this.halfUnit = halfUnit;
 	this.newToWalden = newToWalden;
-	this.headStaff = headStaff;
+	this.staffType = staffType;
 	this.cabin = cabin;
 	this.role = role;
 	this.gender = gender;

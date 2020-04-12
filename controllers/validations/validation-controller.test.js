@@ -12,7 +12,7 @@ let rachy = new StaffEntity(0,
   		"comics", // unit
   		"toonies", // halfUnit
   		false, // newToWalden
-  		true, // headStaff
+  		1, // staffType
   		"comic head staff", // cabin
   		"toonie unit head", // role
   		"female"); //gender
@@ -23,7 +23,7 @@ let rachy2 = new StaffEntity(0,
   		"colours", // unit
   		"toonies", // halfUnit
   		false, // newToWalden
-  		true, // headStaff
+  		1, // staffType
   		"comic head staff", // cabin
   		"counsellor", // role
   		"female"); //gender

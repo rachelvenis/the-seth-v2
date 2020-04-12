@@ -61,7 +61,7 @@ class DayOffValidationController extends ValidationController {
   updateOlderQuotas(allStaff) {
     let pastCount = 0;
     for (let i = 0; i < this.allStaff.length; i++) {
-      if (!this.allStaff[i].headStaff &&
+      if (this.allStaff[i].staffType == 0 &&
         this.allStaff[i].birthYear <= (this.currentYear - 19)) {
         let key = this.allStaff[i].role == "counsellor" ?
           this.allStaff[i].halfUnit : this.allStaff[i].role;
@@ -156,7 +156,7 @@ updateSeekerCabinQuotas(allStaff){
   }
 
   noHeadStaffDayOff(staff, day){
-    let result = staff.headStaff ? !day.noHeadStaffDayOff : true;
+    let result = staff.staffType == 1 ? !day.noHeadStaffDayOff : true;
     if (!result) isValidErrorMessages.push("noHeadStaffDayOff - " + staff.firstName + staff.lastName);
     return result;
   }
@@ -230,7 +230,7 @@ updateSeekerCabinQuotas(allStaff){
     let newCount = 0;
     for (let i = 0; i < assignments.length; i++){
       let currentStaff = this.allStaff[assignments[i].staffId]; 
-      if (!currentStaff.role == "counsellor" && !currentStaff.headStaff) {
+      if (!currentStaff.role == "counsellor" && currentStaff.staffType == 0) {
         pastCount = currentStaff.cabin in currentSpecialtyCounts ?
           currentSpecialtyCounts[currentStaff.cabin] : 0;
         newCount = pastCount + 1;

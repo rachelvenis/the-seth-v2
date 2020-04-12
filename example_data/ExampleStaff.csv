@@ -1,153 +1,153 @@
-firstName,lastName,birthYear,unit,halfUnit,newToWalden,headStaff,cabin,role,gender
-rachel,venis,1996,colours,colours,FALSE,FALSE,yellow,sail,female
-kari,steiner,1996,colours,colours,FALSE,FALSE,yellow,sail,female
-maddie,held,1996,comics,loonies,FALSE,TRUE,comic head staff,unit head,female
-marlie,clark,1996,cits,cits,FALSE,TRUE,cit head staff,head of swim,female
-sam,venis,1994,seekers,finders,FALSE,FALSE,B2,counsellor,male
-adam,venis,1991,zods,stars,FALSE,FALSE,aries,sail,male
-judy,venis,1961,comics,loonies,TRUE,FALSE,yellow,counsellor,female
-glenn,venis,1961,colours,toonies,TRUE,TRUE,zod head staff,head of ski,male
-leila,juriansz,1996,comics,loonies,TRUE,FALSE,yellow,counsellor,female
-katie,steves,1996,zods,planets,TRUE,FALSE,libra,counsellor,female
-sarah,paull,2000,comics,toonies,TRUE,FALSE,road runners,swim,female
-matt,altberg,1996,seekers,finders,FALSE,FALSE,B2,counsellor,male
-natalie,leung,1996,seekers,finders,FALSE,FALSE,G1,counsellor,female
-Zachary,Abrams,1999,colours,colours,TRUE,FALSE,red,swim,male
-Brittany,Arakua,1998,colours,colours,TRUE,TRUE,colour head staff,counsellor,female
-Alicia,Arzem,1997,colours,colours,TRUE,FALSE,purple,sail,female
-Rachel,Bain,1999,colours,colours,TRUE,FALSE,white,counsellor,female
-Chris,Barhorst,1998,comics,loonies,TRUE,FALSE,spiderman,a&c,male
-Lucy,Blackburn,1996,zods,planets,TRUE,FALSE,gemini,counsellor,female
-Rory,Blundell,1994,zods,stars,TRUE,FALSE,sagittarious,climbing,male
-Emma,Bramley,1998,seekers,keepers,FALSE,FALSE,G4,counsellor,female
-Lisa,Brankin,1999,colours,colours,TRUE,FALSE,yellow,video,female
-Luke,Butler,1998,comics,toonies,TRUE,FALSE,animaniacs,counsellor,male
-Rebecca,Chorlton,1997,colours,colours,TRUE,FALSE,pink,swim,female
-Thomas,Clarkson,2000,colours,colours,TRUE,FALSE,blue,counsellor,male
-Jarred,Cole,1999,colours,colours,TRUE,FALSE,orange,swim,male
-Luthien,Costello-Sayer,2000,zods,planets,TRUE,FALSE,libra,counsellor,female
-Jemima,Davies,1996,comics,loonies,TRUE,FALSE,betty boop,swim,female
-Rhiannon,Davies,1999,seekers,finders,FALSE,FALSE,G2,counsellor,female
-Bronagh,Deane,1998,comics,toonies,TRUE,FALSE,flintstones,canoeyak,male
-Ian,Doyle,1998,colours,colours,TRUE,FALSE,green,counsellor,male
-Rachel,Ecker,2000,colours,colours,TRUE,FALSE,purple,ski,female
-Alexzandria,Edwards,2000,zods,stars,TRUE,FALSE,capricorn,counsellor,female
-Jillian,Elman,1999,zods,planets,TRUE,FALSE,virgo,sail,female
-Madeline,Elman,1998,colours,colours,TRUE,FALSE,white,counsellor,female
-Jenna,Flemington,1998,colours,colours,TRUE,FALSE,yellow,sports,female
-Shuan,Fletcher,1997,seekers,keepers,FALSE,FALSE,B4,counsellor,male
-Carly,Fox,2000,seekers,finders,TRUE,FALSE,G3,sports,female
-Kate,Gallagher,1999,colours,colours,TRUE,FALSE,pink,counsellor,female
-Ashley,Gerlock,1998,colours,colours,TRUE,FALSE,yellow,adventure sports,female
-Maxwell,Gerlock,1996,zods,stars,TRUE,FALSE,aquarious,counsellor,male
-Gabbi,Gerskup,2000,colours,colours,TRUE,FALSE,purple,swim,female
-Aiden,Gisbert,1999,colours,colours,TRUE,FALSE,red,counsellor,male
-Kyle,Goldstein,2000,colours,colours,TRUE,FALSE,blue,ski,male
-Matt,Gorlick,1999,comics,loonies,FALSE,FALSE,popeye,counsellor,male
-Jacob,Greenbaum,1999,comics,toonies,TRUE,FALSE,bartman,canoeyak,male
-Gabriel,Gutfrajnd,1997,comics,loonies,TRUE,FALSE,incredibles,counsellor,male
-Caleb,Hayden,2000,zods,stars,TRUE,FALSE,aries,sail,male
-Maeve,Hickey,1998,zods,planets,TRUE,FALSE,gemini,counsellor,female
-Seagram,Hull,1999,zods,stars,TRUE,FALSE,pisces,a&c,female
-Courtney,Jackson,1997,seekers,keepers,TRUE,FALSE,G5,counsellor,female
-Maia,Jeffries,1996,seekers,finders,TRUE,FALSE,G1,climbing,female
-Steve,Johnston,1999,colours,colours,FALSE,FALSE,orange,counsellor,male
-Jordyn,Kimmel,1998,colours,colours,TRUE,FALSE,white,adventure sports,female
-Sam,Fried,1997,comics,toonies,TRUE,FALSE,road runner,counsellor,female
-Serena,Kobayashi-LeBel,1999,seekers,keepers,TRUE,TRUE,G6,sports,female
-Angelica,Konigkina,2000,seekers,finders,TRUE,FALSE,G2,counsellor,female
-Weronika,Weonika,1999,comics,loonies,TRUE,FALSE,spiderman,a&c,male
-Amy-Victoria,Laing,1998,colours,colours,TRUE,FALSE,purple,counsellor,female
-Shannon,Levy,1998,seekers,keepers,TRUE,FALSE,G4,a&c,female
-Lily,Librach,1999,colours,colours,FALSE,FALSE,white,counsellor,female
-Catherine,Light,1998,zods,planets,TRUE,FALSE,libra,a&c,female
-Andi,Mayer-Goodman,2000,colours,colours,TRUE,FALSE,pink,counsellor,female
-Kathryn,Mayoh,1997,comics,toonies,TRUE,FALSE,pink panther,swim,female
-Morgan,Mizzoni,1997,seekers,finders,TRUE,FALSE,G3,counsellor,female
-Kieran,Moran,1999,seekers,keepers,TRUE,FALSE,B5,ski,male
-Gemma,Mordente,2000,comics,loonies,TRUE,TRUE,muppets,counsellor,female
-Jack,Morrow,1996,colours,colours,TRUE,FALSE,green,sail,male
-Bethany,Mullarkey,1998,zods,stars,FALSE,FALSE,orion,counsellor,female
-Dora,Nagy,1999,colours,colours,TRUE,FALSE,red,climbing,female
-Naimh,Nolan,1999,zods,planets,TRUE,FALSE,virgo,counsellor,female
-Andrew,O'Brien,1997,colours,colours,TRUE,FALSE,blue,climbing,male
-Melanie,Offman,1998,colours,colours,TRUE,FALSE,yellow,counsellor,female
-Samatha,Palter,1999,seekers,finders,TRUE,FALSE,G1,climbing,female
-Jared,Pearlman,1999,seekers,keepers,TRUE,FALSE,B6,counsellor,male
-Bree,Peters,1999,comics,toonies,TRUE,FALSE,kim possible,adventure sports,female
-Christian,Phillips,1994,colours,colours,FALSE,FALSE,orange,counsellor,male
-Christian,Pinnington,2000,colours,colours,TRUE,FALSE,green,a&c,male
-Claudia,Richmond,1996,seekers,finders,TRUE,FALSE,G2,counsellor,female
-Kara,Rosien,1998,zods,stars,TRUE,FALSE,capricorn,tennis,female
-Kyle,Rotenberg,1999,colours,colours,TRUE,FALSE,red,counsellor,male
-Ellie,Routledge,1999,colours,colours,TRUE,FALSE,purple,tennis,female
-Camille,Sako,1999,seekers,keepers,TRUE,FALSE,G5,counsellor,female
-Jamie,Seligman,1997,zods,planets,TRUE,FALSE,gemini,canoeyak,female
-Anthony,Shambrook,1998,colours,colours,FALSE,FALSE,blue,counsellor,male
-Samuel,Shiff,1997,comics,loonies,TRUE,FALSE,popeye,tennis,male
-Daniel,Shuman,2000,seekers,finders,TRUE,FALSE,B1,counsellor,male
-Adam,Smith,1999,colours,colours,TRUE,FALSE,orange,sports,male
-Harvey,Smith,1998,comics,toonies,TRUE,FALSE,animaniacs,counsellor,male
-Rosie,Smith,1999,colours,colours,TRUE,FALSE,white,swim,female
-Halle,Solomons,2000,zods,stars,TRUE,FALSE,pisces,counsellor,female
-Elena,Stafford,1998,colours,colours,TRUE,FALSE,pink,sail,female
-Samantha,Stancer,1999,seekers,keepers,FALSE,FALSE,G6,counsellor,female
-Sammy,Steiner,1997,seekers,finders,TRUE,FALSE,G3,a&c,female
-Tara,Treacy,1998,seekers,keepers,TRUE,FALSE,G4,counsellor,female
-Maisie,Tuttle,1999,zods,planets,TRUE,FALSE,libra,ski,female
-Aron,Weingarten,1998,zods,stars,TRUE,FALSE,sagittarious,counsellor,male
-Bengamin,Weingarten,1997,comics,loonies,TRUE,FALSE,incredibles,canoeyak,male
-Jesse,Goldstein,1997,comics,toonies,TRUE,FALSE,flintstones,counsellor,male
-Laura,Weir,1996,colours,colours,TRUE,FALSE,yellow,climbing,female
-Ellan,Welsh,1999,comics,loonies,FALSE,FALSE,bugs bunny,counsellor,female
-Hallie,Wiltzer,1999,colours,colours,TRUE,FALSE,purple,adventure sports,female
-Bethany,Wright,1993,comics,toonies,TRUE,TRUE,road runner,counsellor,female
-Danielle,Zelikovitz,1994,colours,colours,TRUE,TRUE,white,swim,female
-Catherine,Averill,1996,seekers,loonies,FALSE,FALSE,bugs bunny,counsellor,female
-Noah,Axelrod,1996,zods,toonies,FALSE,FALSE,animaniacs,sail,male
-Amanda,Benlolo,2000,comics,loonies,FALSE,TRUE,muppets,counsellor,female
-Valentina,Bancale,1996,colours,planets,FALSE,TRUE,libra,head of ski,female
-Ben,Fagan,1996,comics,toonies,FALSE,FALSE,flintstones,counsellor,male
-Rachel,Farren,1999,zods,finders,FALSE,FALSE,G1,counsellor,female
-Conor,Finn,1998,comics,finders,TRUE,FALSE,B1,swim,male
-Brandon,Fisher,1997,seekers,keepers,TRUE,TRUE,B4,counsellor,male
-Matthew,Bramley,1999,seekers,finders,TRUE,FALSE,B2,counsellor,male
-Elyce,Brady,1998,colours,colours,TRUE,FALSE,white,swim,female
-Alexandra,Burman,1996,colours,colours,TRUE,FALSE,yellow,counsellor,female
-Maya,Devine,1994,colours,loonies,FALSE,FALSE,betty boop,sail,female
-Charmaine,Castro,1998,colours,planets,FALSE,FALSE,gemini,counsellor,female
-Jack,Goldberg,1999,comics,stars,TRUE,FALSE,sagittarious,a&c,male
-Jordana,Goldenberg,1998,zods,keepers,TRUE,TRUE,G4,counsellor,female
-Seth,Cole,1997,zods,colours,TRUE,FALSE,blue,climbing,male
-Hannah,Fryer,2000,seekers,toonies,TRUE,FALSE,pink panther,counsellor,female
-Katelyn,Grogan,1999,colours,colours,TRUE,FALSE,purple,video,female
-Corey,Jacobs,2000,comics,colours,TRUE,FALSE,orange,counsellor,male
-Ryan,Kirshenbaum,1996,colours,colours,TRUE,FALSE,red,swim,male
-Anna,Klein,1999,colours,planets,FALSE,FALSE,virgo,counsellor,female
-Weronika,Kozuch,1998,colours,loonies,TRUE,FALSE,spiderman,swim,male
-Daniel,Krestell,1998,zods,finders,TRUE,FALSE,B3,counsellor,male
-Brooke,Leotta,2000,comics,toonies,TRUE,FALSE,kim possible,swim,female
-Jayden,Levy,2000,seekers,colours,TRUE,FALSE,pink,counsellor,female
-Jordan,Lindzon,1999,comics,colours,TRUE,FALSE,green,canoeyak,male
-Sophie,Lloyd,1998,colours,stars,TRUE,FALSE,orion,counsellor,female
-Sean,MacGettigan,1998,colours,planets,TRUE,FALSE,leo,ski,male
-Holly Ann,Mckenna,1997,zods,colours,FALSE,FALSE,white,counsellor,female
-Robbie,Middlestadt,2000,zods,colours,TRUE,FALSE,blue,sail,male
-Cillian,Moore,1999,colours,keepers,TRUE,FALSE,G5,counsellor,female
-Eirig,Morgan,1998,colours,finders,TRUE,FALSE,B1,sports,male
-Josh,Moscoe,1996,seekers,colours,TRUE,FALSE,orange,counsellor,male
-Julia,Norgate,2000,seekers,colours,TRUE,FALSE,yellow,sports,female
-Katrina,Oliver,1999,colours,stars,TRUE,FALSE,capricorn,counsellor,female
-Jordana,Papernick,2000,colours,colours,TRUE,FALSE,purple,adventure sports,female
-Danny,Prikhoji,1999,zods,colours,FALSE,FALSE,red,counsellor,male
-Thomas,Rofe,1999,colours,colours,TRUE,FALSE,green,swim,male
-Madeline,Rotmon,1997,colours,loonies,TRUE,FALSE,bug bunny,counsellor,female
-Billie,Schulman,2000,colours,toonies,TRUE,FALSE,road runner,ski,female
-Noam,Schwartz,1998,comics,loonies,TRUE,FALSE,popeye,counsellor,male
-Amy,Shanahan,1999,comics,stars,FALSE,FALSE,pisces,canoeyak,female
-Arielle,Sholzberg,1997,comics,planets,FALSE,FALSE,libra,counsellor,female
-Ben,Shulman,1996,zods,stars,FALSE,FALSE,aquarious,sail,male
-Chloe,Twamley,1999,zods,keepers,FALSE,FALSE,G6,counsellor,female
-Willem,VanHees,1998,zods,finders,FALSE,FALSE,B2,a&c,male
-Judith,Waschinger,1997,seekers,colours,FALSE,FALSE,pink,counsellor,female
-Lowbna,Thabet,1999,seekers,colours,FALSE,FALSE,white,climbing,female
+firstName,lastName,birthYear,unit,halfUnit,newToWalden,staffType,cabin,role,gender
+rachel,venis,1996,colours,colours,FALSE,1,yellow,sail,female
+kari,steiner,1996,colours,colours,FALSE,1,yellow,sail,female
+maddie,held,1996,comics,loonies,FALSE,1,comic head staff,unit head,female
+marlie,clark,1996,cits,cits,FALSE,1,cit head staff,head of swim,female
+sam,venis,1994,seekers,finders,FALSE,0,B2,counsellor,male
+adam,venis,1991,zods,stars,FALSE,0,aries,sail,male
+judy,venis,1961,comics,loonies,TRUE,0,yellow,counsellor,female
+glenn,venis,1961,colours,toonies,TRUE,0,zod head staff,head of ski,male
+leila,juriansz,1996,comics,loonies,TRUE,0,yellow,counsellor,female
+katie,steves,1996,zods,planets,TRUE,0,libra,counsellor,female
+sarah,paull,2000,comics,toonies,TRUE,0,road runners,swim,female
+matt,altberg,1996,seekers,finders,FALSE,0,B2,counsellor,male
+natalie,leung,1996,seekers,finders,FALSE,0,G1,counsellor,female
+Zachary,Abrams,1999,colours,colours,TRUE,0,red,swim,male
+Brittany,Arakua,1998,colours,colours,TRUE,0,colour head staff,counsellor,female
+Alicia,Arzem,1997,colours,colours,TRUE,0,purple,sail,female
+Rachel,Bain,1999,colours,colours,TRUE,0,white,counsellor,female
+Chris,Barhorst,1998,comics,loonies,TRUE,0,spiderman,a&c,male
+Lucy,Blackburn,1996,zods,planets,TRUE,0,gemini,counsellor,female
+Rory,Blundell,1994,zods,stars,TRUE,0,sagittarious,climbing,male
+Emma,Bramley,1998,seekers,keepers,FALSE,0,G4,counsellor,female
+Lisa,Brankin,1999,colours,colours,TRUE,0,yellow,video,female
+Luke,Butler,1998,comics,toonies,TRUE,0,animaniacs,counsellor,male
+Rebecca,Chorlton,1997,colours,colours,TRUE,0,pink,swim,female
+Thomas,Clarkson,2000,colours,colours,TRUE,0,blue,counsellor,male
+Jarred,Cole,1999,colours,colours,TRUE,0,orange,swim,male
+Luthien,Costello-Sayer,2000,zods,planets,TRUE,0,libra,counsellor,female
+Jemima,Davies,1996,comics,loonies,TRUE,0,betty boop,swim,female
+Rhiannon,Davies,1999,seekers,finders,FALSE,0,G2,counsellor,female
+Bronagh,Deane,1998,comics,toonies,TRUE,0,flintstones,canoeyak,male
+Ian,Doyle,1998,colours,colours,TRUE,0,green,counsellor,male
+Rachel,Ecker,2000,colours,colours,TRUE,0,purple,ski,female
+Alexzandria,Edwards,2000,zods,stars,TRUE,0,capricorn,counsellor,female
+Jillian,Elman,1999,zods,planets,TRUE,0,virgo,sail,female
+Madeline,Elman,1998,colours,colours,TRUE,0,white,counsellor,female
+Jenna,Flemington,1998,colours,colours,TRUE,0,yellow,sports,female
+Shuan,Fletcher,1997,seekers,keepers,FALSE,0,B4,counsellor,male
+Carly,Fox,2000,seekers,finders,TRUE,0,G3,sports,female
+Kate,Gallagher,1999,colours,colours,TRUE,0,pink,counsellor,female
+Ashley,Gerlock,1998,colours,colours,TRUE,0,yellow,adventure sports,female
+Maxwell,Gerlock,1996,zods,stars,TRUE,0,aquarious,counsellor,male
+Gabbi,Gerskup,2000,colours,colours,TRUE,0,purple,swim,female
+Aiden,Gisbert,1999,colours,colours,TRUE,0,red,counsellor,male
+Kyle,Goldstein,2000,colours,colours,TRUE,0,blue,ski,male
+Matt,Gorlick,1999,comics,loonies,FALSE,0,popeye,counsellor,male
+Jacob,Greenbaum,1999,comics,toonies,TRUE,0,bartman,canoeyak,male
+Gabriel,Gutfrajnd,1997,comics,loonies,TRUE,0,incredibles,counsellor,male
+Caleb,Hayden,2000,zods,stars,TRUE,0,aries,sail,male
+Maeve,Hickey,1998,zods,planets,TRUE,0,gemini,counsellor,female
+Seagram,Hull,1999,zods,stars,TRUE,0,pisces,a&c,female
+Courtney,Jackson,1997,seekers,keepers,TRUE,0,G5,counsellor,female
+Maia,Jeffries,1996,seekers,finders,TRUE,0,G1,climbing,female
+Steve,Johnston,1999,colours,colours,FALSE,0,orange,counsellor,male
+Jordyn,Kimmel,1998,colours,colours,TRUE,0,white,adventure sports,female
+Sam,Fried,1997,comics,toonies,TRUE,0,road runner,counsellor,female
+Serena,Kobayashi-LeBel,1999,seekers,keepers,TRUE,0,G6,sports,female
+Angelica,Konigkina,2000,seekers,finders,TRUE,0,G2,counsellor,female
+Weronika,Weonika,1999,comics,loonies,TRUE,0,spiderman,a&c,male
+Amy-Victoria,Laing,1998,colours,colours,TRUE,0,purple,counsellor,female
+Shannon,Levy,1998,seekers,keepers,TRUE,0,G4,a&c,female
+Lily,Librach,1999,colours,colours,FALSE,0,white,counsellor,female
+Catherine,Light,1998,zods,planets,TRUE,0,libra,a&c,female
+Andi,Mayer-Goodman,2000,colours,colours,TRUE,0,pink,counsellor,female
+Kathryn,Mayoh,1997,comics,toonies,TRUE,0,pink panther,swim,female
+Morgan,Mizzoni,1997,seekers,finders,TRUE,0,G3,counsellor,female
+Kieran,Moran,1999,seekers,keepers,TRUE,0,B5,ski,male
+Gemma,Mordente,2000,comics,loonies,TRUE,1,muppets,counsellor,female
+Jack,Morrow,1996,colours,colours,TRUE,0,green,sail,male
+Bethany,Mullarkey,1998,zods,stars,FALSE,0,orion,counsellor,female
+Dora,Nagy,1999,colours,colours,TRUE,0,red,climbing,female
+Naimh,Nolan,1999,zods,planets,TRUE,0,virgo,counsellor,female
+Andrew,O'Brien,1997,colours,colours,TRUE,0,blue,climbing,male
+Melanie,Offman,1998,colours,colours,TRUE,0,yellow,counsellor,female
+Samatha,Palter,1999,seekers,finders,TRUE,0,G1,climbing,female
+Jared,Pearlman,1999,seekers,keepers,TRUE,0,B6,counsellor,male
+Bree,Peters,1999,comics,toonies,TRUE,2,kim possible,adventure sports,female
+Christian,Phillips,1994,colours,colours,FALSE,0,orange,counsellor,male
+Christian,Pinnington,2000,colours,colours,TRUE,0,green,a&c,male
+Claudia,Richmond,1996,seekers,finders,TRUE,0,G2,counsellor,female
+Kara,Rosien,1998,zods,stars,TRUE,0,capricorn,tennis,female
+Kyle,Rotenberg,1999,colours,colours,TRUE,0,red,counsellor,male
+Ellie,Routledge,1999,colours,colours,TRUE,0,purple,tennis,female
+Camille,Sako,1999,seekers,keepers,TRUE,0,G5,counsellor,female
+Jamie,Seligman,1997,zods,planets,TRUE,0,gemini,canoeyak,female
+Anthony,Shambrook,1998,colours,colours,FALSE,0,blue,counsellor,male
+Samuel,Shiff,1997,comics,loonies,TRUE,0,popeye,tennis,male
+Daniel,Shuman,2000,seekers,finders,TRUE,0,B1,counsellor,male
+Adam,Smith,1999,colours,colours,TRUE,0,orange,sports,male
+Harvey,Smith,1998,comics,toonies,TRUE,0,animaniacs,counsellor,male
+Rosie,Smith,1999,colours,colours,TRUE,0,white,swim,female
+Halle,Solomons,2000,zods,stars,TRUE,0,pisces,counsellor,female
+Elena,Stafford,1998,colours,colours,TRUE,0,pink,sail,female
+Samantha,Stancer,1999,seekers,keepers,FALSE,0,G6,counsellor,female
+Sammy,Steiner,1997,seekers,finders,TRUE,0,G3,a&c,female
+Tara,Treacy,1998,seekers,keepers,TRUE,0,G4,counsellor,female
+Maisie,Tuttle,1999,zods,planets,TRUE,0,libra,ski,female
+Aron,Weingarten,1998,zods,stars,TRUE,0,sagittarious,counsellor,male
+Bengamin,Weingarten,1997,comics,loonies,TRUE,0,incredibles,canoeyak,male
+Jesse,Goldstein,1997,comics,toonies,TRUE,0,flintstones,counsellor,male
+Laura,Weir,1996,colours,colours,TRUE,0,yellow,climbing,female
+Ellan,Welsh,1999,comics,loonies,FALSE,0,bugs bunny,counsellor,female
+Hallie,Wiltzer,1999,colours,colours,TRUE,0,purple,adventure sports,female
+Bethany,Wright,1993,comics,toonies,TRUE,2,road runner,counsellor,female
+Danielle,Zelikovitz,1994,colours,colours,TRUE,2,white,swim,female
+Catherine,Averill,1996,seekers,loonies,FALSE,0,bugs bunny,counsellor,female
+Noah,Axelrod,1996,zods,toonies,FALSE,0,animaniacs,sail,male
+Amanda,Benlolo,2000,comics,loonies,FALSE,0,muppets,counsellor,female
+Valentina,Bancale,1996,colours,planets,FALSE,0,libra,head of ski,female
+Ben,Fagan,1996,comics,toonies,FALSE,0,flintstones,counsellor,male
+Rachel,Farren,1999,zods,finders,FALSE,0,G1,counsellor,female
+Conor,Finn,1998,comics,finders,TRUE,0,B1,swim,male
+Brandon,Fisher,1997,seekers,keepers,TRUE,1,B4,counsellor,male
+Matthew,Bramley,1999,seekers,finders,TRUE,0,B2,counsellor,male
+Elyce,Brady,1998,colours,colours,TRUE,0,white,swim,female
+Alexandra,Burman,1996,colours,colours,TRUE,0,yellow,counsellor,female
+Maya,Devine,1994,colours,loonies,FALSE,0,betty boop,sail,female
+Charmaine,Castro,1998,colours,planets,FALSE,0,gemini,counsellor,female
+Jack,Goldberg,1999,comics,stars,TRUE,0,sagittarious,a&c,male
+Jordana,Goldenberg,1998,zods,keepers,TRUE,0,G4,counsellor,female
+Seth,Cole,1997,zods,colours,TRUE,2,blue,climbing,male
+Hannah,Fryer,2000,seekers,toonies,TRUE,0,pink panther,counsellor,female
+Katelyn,Grogan,1999,colours,colours,TRUE,0,purple,video,female
+Corey,Jacobs,2000,comics,colours,TRUE,0,orange,counsellor,male
+Ryan,Kirshenbaum,1996,colours,colours,TRUE,0,red,swim,male
+Anna,Klein,1999,colours,planets,FALSE,0,virgo,counsellor,female
+Weronika,Kozuch,1998,colours,loonies,TRUE,0,spiderman,swim,male
+Daniel,Krestell,1998,zods,finders,TRUE,0,B3,counsellor,male
+Brooke,Leotta,2000,comics,toonies,TRUE,0,kim possible,swim,female
+Jayden,Levy,2000,seekers,colours,TRUE,0,pink,counsellor,female
+Jordan,Lindzon,1999,comics,colours,TRUE,0,green,canoeyak,male
+Sophie,Lloyd,1998,colours,stars,TRUE,2,orion,counsellor,female
+Sean,MacGettigan,1998,colours,planets,TRUE,0,leo,ski,male
+Holly Ann,Mckenna,1997,zods,colours,FALSE,0,white,counsellor,female
+Robbie,Middlestadt,2000,zods,colours,TRUE,0,blue,sail,male
+Cillian,Moore,1999,colours,keepers,TRUE,0,G5,counsellor,female
+Eirig,Morgan,1998,colours,finders,TRUE,1,B1,sports,male
+Josh,Moscoe,1996,seekers,colours,TRUE,0,orange,counsellor,male
+Julia,Norgate,2000,seekers,colours,TRUE,0,yellow,sports,female
+Katrina,Oliver,1999,colours,stars,TRUE,0,capricorn,counsellor,female
+Jordana,Papernick,2000,colours,colours,TRUE,0,purple,adventure sports,female
+Danny,Prikhoji,1999,zods,colours,FALSE,0,red,counsellor,male
+Thomas,Rofe,1999,colours,colours,TRUE,0,green,swim,male
+Madeline,Rotmon,1997,colours,loonies,TRUE,0,bug bunny,counsellor,female
+Billie,Schulman,2000,colours,toonies,TRUE,0,road runner,ski,female
+Noam,Schwartz,1998,comics,loonies,TRUE,0,popeye,counsellor,male
+Amy,Shanahan,1999,comics,stars,FALSE,0,pisces,canoeyak,female
+Arielle,Sholzberg,1997,comics,planets,FALSE,0,libra,counsellor,female
+Ben,Shulman,1996,zods,stars,FALSE,0,aquarious,sail,male
+Chloe,Twamley,1999,zods,keepers,FALSE,0,G6,counsellor,female
+Willem,VanHees,1998,zods,finders,FALSE,0,B2,a&c,male
+Judith,Waschinger,1997,seekers,colours,FALSE,0,pink,counsellor,female
+Lowbna,Thabet,1999,seekers,colours,FALSE,0,white,climbing,female

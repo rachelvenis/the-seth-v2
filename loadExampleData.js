@@ -65,7 +65,7 @@ class LoadExampleData {
 			  row['unit'],
 			  row['halfUnit'],
 			  row['newToWalden'] == "TRUE",
-			  row['headStaff'] == "TRUE",
+			  row['staffType'],
 			  row['cabin'],
 			  row['role'],
 			  row['gender'],

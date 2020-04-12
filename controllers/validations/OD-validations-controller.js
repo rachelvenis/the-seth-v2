@@ -52,15 +52,15 @@ class ODValidations extends ValidationController {
 	    if (!result) this.isValidErrorMessages.push("hasWaldenGamesDuties - " + staff.firstName + staff.lastName);
 		return result;
 	}
-	// TODO comparision with some global variable storing 'round of ODs'
+	
 	numberOfODsDone(staff){
 	    let result = staff.ODCount < this.globalRoundOfOD; 
 	    if (!result) this.isValidErrorMessages.push("numberOfODsDone - " + staff.firstName + staff.lastName);
 		return result;
 	}
-	// TODO account for LTeam
+	
 	regularStaff(staff){
-	    let result = !staff.headStaff; 
+	    let result = staff.staffType == 0; 
 	    if (!result) this.isValidErrorMessages.push("regularStaff - " + staff.firstName + staff.lastName);
 		return result;
 	}
