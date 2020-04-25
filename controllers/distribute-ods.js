@@ -4,15 +4,22 @@ const ODValidations = require('./validations/OD-validations-controller.js');
 let idOfLastAssignedOD;
 
 class DistributeODs {
-  constructor(allStaffIn, allDaysIn, pastAssignmentsIn) {
+  constructor(allStaffIn, pastAssignmentsIn, allDaysIn) {
 		this.defaultODs = {
-			"colours": {"female" : 3, "male": 3},
-			"loonies": {"female" : 2, "male": 2},
-			"toonies": {"female" : 2, "male": 2},
-			"planets": {"female" : 2, "male": 2},
-			"stars": {"female" : 2, "male": 2},
-			"finders": {"female" : 2, "male": 2},
-			"keepers": {"female" : 2, "male": 2}
+			// "colours": {"female" : 3, "male": 3},
+			// "loonies": {"female" : 2, "male": 2},
+			// "toonies": {"female" : 2, "male": 2},
+			// "planets": {"female" : 2, "male": 2},
+			// "stars": {"female" : 2, "male": 2},
+			// "finders": {"female" : 2, "male": 2},
+			// "keepers": {"female" : 2, "male": 2}
+			"colours": {"female" : 1, "male": 1},
+			"loonies": {"female" : 1, "male": 1},
+			"toonies": {"female" : 1, "male": 1},
+			"planets": {"female" : 1, "male": 1},
+			"stars": {"female" : 1, "male": 1},
+			"finders": {"female" : 1, "male": 1},
+			"keepers": {"female" : 1, "male": 1}
 		}
 		this.oDValidations = new ODValidations(allStaffIn, allDaysIn, pastAssignmentsIn);
 		this.allStaff = allStaffIn;
@@ -20,7 +27,14 @@ class DistributeODs {
 		this.allDays = allDaysIn;
 	}
 
-	getNeededODs(day){
+	distributeEachDay(start_day_index, end_day_index) {
+		for(let i = start_day_index; i <= end_day_index; i++) {
+			console.log("\nday - " + i);
+			this.getODAssignments(this.allDays[i]);
+		}
+	}
+
+	getNeededODs(day) {
 		let neededODs = {};
 		if (day.normalOD) {
 			neededODs = this.defaultODs;
@@ -53,14 +67,18 @@ class DistributeODs {
 
 	// global round of OD
 	getValidStaff(day, unit, gender) {
-		for (let i = 0; i < this.allStaff.length; i++) {
-			if (this.allStaff[i].halfUnit == unit && this.allStaff[i].gender == gender) {
+		let havent_found = true;
+		let tries = 0;
+		while(havent_found && tries < 8){
+			for (let i = 0; i < this.allStaff.length; i++) {
 				let potentialAssignment = new ODAssignment(this.allStaff[i].id, day.id, unit);
-				if (this.oDValidations.isValid(potentialAssignment)) {
+				if (this.oDValidations.isValid(potentialAssignment, tries, unit, gender)) {
 					this.allStaff[i].incrementODCount();
+					havent_found = false;
 					return this.allStaff[i];
 				}
 			}
+			tries++
 		}
 		return null;
 	}

@@ -1,6 +1,16 @@
 
 const ValidationController  = require('./validation-controller.js');
 
+let halfUnitToUnitMapping = {
+	"colours": "colours",
+	"loonies": "comics",
+	"toonies": "comics",
+	"planets": "zods",
+	"stars": "zods",
+	"finders": "seekers",
+	"keepers": "seekers"
+}
+
 class ODValidations extends ValidationController {
 	constructor(allStaffIn, allDaysIn, pastAssignmentsIn){
 		super()     
@@ -31,15 +41,36 @@ class ODValidations extends ValidationController {
 		return;
 	}
 
-	isValid(assignment) {
+	//TODO you sure this is how it should work?
+	isValid(assignment, tries, halfUnit, gender) {
 		const staff = this.allStaff[assignment.staffId];
 		const day = this.allDays[assignment.dayId];
 		const nextDay = this.allDays[assignment.dayId + 1];
-		return this.hasColourWarsDuties(staff, day) &&
-		   this.hasWaldenGamesDuties(staff, day) &&
-	       this.numberOfODsDone(staff) &&
-	       this.regularStaff(staff) &&
-	       this.onDayOff(staff, day); 
+		let result = this.regularStaff(staff);
+		for (let i = tries; i < 7; i++){
+			if(i < 7) {
+				result = result && this.onDayOff(staff, day);
+			}
+			if(i < 6) {
+				result = result && this.hasColourWarsDuties(staff, day);
+			}
+			if(i < 5) {
+				result = result && this.hasWaldenGamesDuties(staff, day);
+			}
+			if(i < 4) {
+				result = result && (staff.gender == gender);
+			}
+			if(i < 3){
+				result = result && this.numberOfODsDone(staff);
+			}
+			if(i < 2) {
+				result = result && (halfUnitToUnitMapping[staff.halfUnit] == halfUnitToUnitMapping[halfUnit]);
+			}
+			if(i < 1) {
+				result = result && (staff.halfUnit == halfUnit);
+			}
+		}
+		return result;
 	}
 
 	hasColourWarsDuties(staff, day){
