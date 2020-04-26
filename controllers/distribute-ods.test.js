@@ -16,7 +16,7 @@ let dayWithoutCanoeTrip = new DayEntity(0,
   		"colours", // unitPlay
   		false, // noHeadStaffDayOff
   		true, // normalOD
-  		"", // unitCanoeTrip
+  		"", // halfUnitCanoeTrip
   		"", // cabinOvernight
   		0, // useItOrLooseIt
   		false, // colourWarsPrep
@@ -32,7 +32,7 @@ let dayWithCanoeTrip = new DayEntity(0,
   		"comics", // unitPlay
   		true, // noHeadStaffDayOff
   		true, // normalOD
-  		"colours", // unitCanoeTrip
+  		"colours", // halfUnitCanoeTrip
   		"comic head staff", // cabinOvernight
   		0, // useItOrLooseIt
   		false, // colourWarsPrep

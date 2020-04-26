@@ -38,7 +38,7 @@ let dayAlwaysValidWithRachy = new DayEntity(0,
   		"colours", // unitPlay
   		false, // noHeadStaffDayOff
   		false, // normalOD
-  		"", // unitCanoeTrip
+  		"", // halfUnitCanoeTrip
   		"", // cabinOvernight
   		0, // useItOrLooseIt
   		false, // colourWarsPrep
@@ -54,7 +54,7 @@ let dayAlwaysInvalidWithRachy = new DayEntity(0,
   		"comics", // unitPlay
   		true, // noHeadStaffDayOff
   		false, // normalOD
-  		"", // unitCanoeTrip
+  		"", // halfUnitCanoeTrip
   		"", // cabinOvernight
   		0, // useItOrLooseIt
   		true, // colourWarsPrep

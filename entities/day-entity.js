@@ -2,7 +2,7 @@
  * Staff Entity
  */
 class DayEntity {
-  constructor(id, dayOfCamp, rotatingOD, everyoneInCamp, colourChangeover, bunkNight, unitFieldTrip, unitPlay, noHeadStaffDayOff, normalOD, unitCanoeTrip, cabinOvernight, useItOrLooseIt, colourWarsPrep, waldenGamesPrep){
+  constructor(id, dayOfCamp, rotatingOD, everyoneInCamp, colourChangeover, bunkNight, unitFieldTrip, unitPlay, noHeadStaffDayOff, normalOD, halfUnitCanoeTrip, cabinOvernight, useItOrLooseIt, colourWarsPrep, waldenGamesPrep){
 	this.id = id;
 	this.dayOfCamp = dayOfCamp;
 	this.rotatingOD = rotatingOD;
@@ -13,7 +13,7 @@ class DayEntity {
 	this.unitPlay = unitPlay;
 	this.noHeadStaffDayOff = noHeadStaffDayOff;
 	this.normalOD = normalOD;
-	this.unitCanoeTrip = unitCanoeTrip;
+	this.halfUnitCanoeTrip = halfUnitCanoeTrip;
 	this.cabinOvernight = cabinOvernight;
 	this.useItOrLooseIt = useItOrLooseIt;
 	this.colourWarsPrep = colourWarsPrep;

@@ -38,8 +38,8 @@ class DistributeODs {
 		let neededODs = {};
 		if (day.normalOD) {
 			neededODs = this.defaultODs;
-			if (!(day.unitCanoeTrip == "")){
-				delete neededODs[day.unitCanoeTrip];
+			if (!(day.halfUnitCanoeTrip == "")){
+				delete neededODs[day.halfUnitCanoeTrip];
 			}
 		}
 		return neededODs;
@@ -48,16 +48,16 @@ class DistributeODs {
 	getODAssignments(day) {
 		let result = [];
 		let neededODs = this.getNeededODs(day);
-		for (const unit in neededODs){
-			for (let gender in neededODs[unit]) {
-				for (let i = 0; i < neededODs[unit][gender]; i++){
-					let staff = this.getValidStaff(day, unit, gender);
+		for (const halfUnit in neededODs){
+			for (let gender in neededODs[halfUnit]) {
+				for (let i = 0; i < neededODs[halfUnit][gender]; i++){
+					let staff = this.getValidStaff(day, halfUnit, gender);
 					if (staff == null) {
-						console.log("error message in getODAssignments, couldn't find an " + i + "th " + gender + " for " + unit);
+						console.log("error message in getODAssignments, couldn't find an " + i + "th " + gender + " for " + halfUnit);
 	    				// if (!result) this.isValidErrorMessages.push("hasColourWarsDuties - " + staff.name);
 					} else {
-						console.log("assigned " + staff.firstName + " " + staff.lastName + ", " + unit + ", " + gender);
-						result.push(new ODAssignment(day, staff, unit));
+						console.log("assigned " + staff.firstName + " " + staff.lastName + ", " + halfUnit + ", " + gender);
+						result.push(new ODAssignment(day, staff, halfUnit));
 					}
 				}
 			}
@@ -66,13 +66,13 @@ class DistributeODs {
 	}
 
 	// global round of OD
-	getValidStaff(day, unit, gender) {
+	getValidStaff(day, halfUnit, gender) {
 		let havent_found = true;
 		let tries = 0;
 		while(havent_found && tries < 8){
 			for (let i = 0; i < this.allStaff.length; i++) {
-				let potentialAssignment = new ODAssignment(this.allStaff[i].id, day.id, unit);
-				if (this.oDValidations.isValid(potentialAssignment, tries, unit, gender)) {
+				let potentialAssignment = new ODAssignment(this.allStaff[i].id, day.id, halfUnit);
+				if (this.oDValidations.isValid(potentialAssignment, tries, halfUnit, gender)) {
 					this.allStaff[i].incrementODCount();
 					havent_found = false;
 					return this.allStaff[i];

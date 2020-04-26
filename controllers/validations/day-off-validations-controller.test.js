@@ -9,7 +9,6 @@ let dayOffValidationController;
 let rachy = new StaffEntity(0,
   		"rachy", // name
   		1996, // birthYear
-  		"comics", // unit
   		"toonies", // halfUnit
   		false, // newToWalden
   		1, // staffType
@@ -28,7 +27,7 @@ let dayAlwaysValidWithRachy = new DayEntity(0,
   		"colours", // unitPlay
   		false, // noHeadStaffDayOff
   		false, // normalOD
-  		"", // unitCanoeTrip
+  		"", // halfUnitCanoeTrip
   		"", // cabinOvernight
   		0, // useItOrLooseIt
   		false, // colourWarsPrep
@@ -44,7 +43,7 @@ let dayAlwaysInvalidWithRachy = new DayEntity(0,
   		"comics", // unitPlay
   		true, // noHeadStaffDayOff
   		false, // normalOD
-  		"", // unitCanoeTrip
+  		"", // halfUnitCanoeTrip
   		"", // cabinOvernight
   		0, // useItOrLooseIt
   		false, // colourWarsPrep

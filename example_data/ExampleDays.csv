@@ -1,4 +1,4 @@
-dayOfCamp,rotatingOD,everyoneInCamp,colourChangeover,bunkNight,unitFieldTrip,unitPlay,noHeadStaffDayOff,normalOD,unitCanoeTrip,cabinOvernight,useItOrLooseIt,colourWarsPrep,waldenGamesPrep
+dayOfCamp,rotatingOD,everyoneInCamp,colourChangeover,bunkNight,unitFieldTrip,unitPlay,noHeadStaffDayOff,normalOD,halfUnitCanoeTrip,cabinOvernight,useItOrLooseIt,colourWarsPrep,waldenGamesPrep
 1,FALSE,TRUE,FALSE,TRUE,,,TRUE,FALSE,,,0,FALSE,FALSE
 2,FALSE,TRUE,FALSE,FALSE,,,TRUE,TRUE,,,0,FALSE,FALSE
 3,FALSE,TRUE,FALSE,TRUE,,,TRUE,FALSE,stars,,0,FALSE,FALSE

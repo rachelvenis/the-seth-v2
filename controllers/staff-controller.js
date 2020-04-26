@@ -36,7 +36,6 @@ class StaffController {
   create(req, res) {
     const staff = new StaffEntity();
     staff.birthYear = req.body.birthYear;
-    staff.unit = req.body.unit;
     staff.halfUnit = req.body.halfUnit;
     staff.newToWalden = req.body.newToWalden;
     staff.staffType = req.body.staffType;
@@ -51,7 +50,7 @@ class StaffController {
   }
   
   update(req, res) {
-    const staff = new StaffEntity(req.params.id, req.body.name, req.body.birthYear, req.body.unit, req.body.halfUnit, req.body.newToWalden, req.body.headStaff, req.body.cabin, req.body.role, req.body.gender);
+    const staff = new StaffEntity(req.params.id, req.body.name, req.body.birthYear, req.body.halfUnit, req.body.newToWalden, req.body.headStaff, req.body.cabin, req.body.role, req.body.gender);
     
     this.staffModel.update(staff)
       .then(this.controller.editSuccess(res))

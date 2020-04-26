@@ -22,7 +22,7 @@ class StaffModel {
         const staff = [];
         
         for(const row of rows) {
-          staff.push(new StaffEntity(row.id, row.firstName, row.lastName, row.birth_year, row.unit, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender));
+          staff.push(new StaffEntity(row.id, row.firstName, row.lastName, row.birth_year, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender));
         }
         
         return staff;
@@ -44,7 +44,7 @@ class StaffModel {
     
     return this.model.findOne(sql, params)
       .then((row) => {
-        return new StaffEntity(row.id, row.firstName, row.lastName, row.birth_year, row.unit, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender);
+        return new StaffEntity(row.id, row.firstName, row.lastName, row.birth_year, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender);
       });
   }
 
@@ -73,7 +73,6 @@ class StaffModel {
     const sql = `
       INSERT INTO staff (
         birth_year,
-        unit,
         half_unit,
         new_to_walden,
         head_staff,
@@ -83,7 +82,6 @@ class StaffModel {
         name
       ) VALUES (
         $birthYear,
-        $unit,
         $half_unit,
         $new_to_walden,
         $head_staff,
@@ -95,7 +93,6 @@ class StaffModel {
     `;
     const params = {
       $birthYear : staff.birthYear,
-      $unit : staff.unit,
       $half_unit : staff.halfUnit,
       $new_to_walden : staff.newToWalden,
       $head_staff : staff.headStaff,
@@ -116,7 +113,6 @@ class StaffModel {
       REPLACE INTO staff (
         id,
         birth_year,
-        unit,
         half_unit,
         new_to_walden,
         head_staff,
@@ -127,7 +123,6 @@ class StaffModel {
       ) VALUES (
         $id,
         $birthYear,
-        $unit,
         $half_unit,
         $new_to_walden,
         $head_staff,
@@ -140,7 +135,6 @@ class StaffModel {
     const params = {
       $id : staff.id,
       $birthYear : staff.birthYear,
-      $unit : staff.unit,
       $half_unit : staff.halfUnit,
       $new_to_walden : staff.newToWalden,
       $head_staff : staff.headStaff,

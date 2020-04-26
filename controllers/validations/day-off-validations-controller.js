@@ -14,6 +14,16 @@ let allDays = [];
 
 let areValidErrorMessages = [];
 
+let halfUnitToUnitMapping = {
+  "colours": "colours",
+  "loonies": "comics",
+  "toonies": "comics",
+  "planets": "zods",
+  "stars": "zods",
+  "finders": "seekers",
+  "keepers": "seekers"
+}
+
 // const currentYear = 2019
 
 let errorMessage = "";
@@ -76,7 +86,7 @@ updateSeekerCabinQuotas(allStaff){
     let pastCount = 0;
     for (let i = 0; i < this.allStaff.length; i++){
       let currentStaff = this.allStaff[i];
-      if (currentStaff.unit == "seekers"){
+      if (halfUnitToUnitMapping[currentStaff.halfUnit] == "seekers"){
         pastCount= currentStaff.cabin in seekerCabinQuotas ? seekerCabinQuotas[currentStaff.cabin] : 0;
         seekerCabinQuotas[currentStaff.cabin] = pastCount + 1;
       }
@@ -144,13 +154,13 @@ updateSeekerCabinQuotas(allStaff){
 
   //individual validations
   unitTrip(staff, day){
-    let result = !(staff.unit == day.unitFieldTrip); 
+    let result = !(halfUnitToUnitMapping[staff.halfUnit] == day.unitFieldTrip); 
     if (!result) isValidErrorMessages.push("unitTrip - " + staff.firstName + staff.lastName);
     return result;
   }
 
   unitPlay(staff, day){
-    let result = !(staff.unit == day.unitPlay);
+    let result = !(halfUnitToUnitMapping[staff.halfUnit] == day.unitPlay);
     if (!result) isValidErrorMessages.push("unitPlay - " + staff.firstName + staff.lastName);
     return result;
   }
@@ -187,7 +197,7 @@ updateSeekerCabinQuotas(allStaff){
     let pastCount = 0;
     for (let i = 0; i < assignments.length; i++){
       let currentStaff = this.allStaff[assignments[i].staffId];
-      if (currentStaff.role == "counsellor" && !currentStaff.unit == "seekers"){
+      if (currentStaff.role == "counsellor" && !(halfUnitToUnitMapping[currentStaff.halfUnit] == "seekers")){
         pastCount = currentStaff.cabin in currentCabinCounts ? currentCabinCounts[currentStaff.cabin] : 0;
         currentCabinCounts[currentStaff.cabin] = pastCount + 1;
       }
@@ -248,7 +258,7 @@ updateSeekerCabinQuotas(allStaff){
     let pastCount = 0;
     for (let i = 0; i < assignments.length;i++){
       let currentStaff = this.allStaff[assignments[i].staffId];
-      if (currentStaff.unit == "seekers"){
+      if (halfUnitToUnitMapping[currentStaff.halfUnit] == "seekers"){
         pastCount = currentStaff.cabin in currentQuotaCounts ? currentQuotaCounts[currentStaff.cabin] : 0;
         currentQuotaCounts[currentStaff.cabin] = pastCount + 1;
       }

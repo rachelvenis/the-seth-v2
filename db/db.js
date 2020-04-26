@@ -38,7 +38,7 @@ const init = () => {
       unitPlay              TEXT,
       noHeadStaffDayOff     INTEGER NOT NULL,
       normalOD              INTEGER NOT NULL,
-      unitCanoeTrip         TEXT,
+      halfUnitCanoeTrip         TEXT,
       cabinOvernight        TEXT,
       useItOrLooseIt        INTEGER
     )`);

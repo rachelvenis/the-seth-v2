@@ -15,15 +15,15 @@ loadExampleData.run().then((results) => {
 	allStaff = results.allStaff;
 	allDays = results.allDays;
 
-	const hi = new DayOffValidation(allStaff, pastAssignments, allDays);
+	const dayOffValidation = new DayOffValidation(allStaff, pastAssignments, allDays);
 
 	// console.log("allPastAssignments... " + results.allPastAssignments);
 	// console.log("allNewAssignments... " + results.allNewAssignments);
 	// console.log("allStaff... " + results.allStaff);
 	// console.log("allDays... " + results.allDays);
 
-	console.log("eachValid(newAssignments) " + hi.eachValid(results.allNewAssignments));
-	console.log("areValid(newAssignments) " + hi.areValid(results.allNewAssignments));
+	console.log("eachValid(newAssignments) " + dayOffValidation.eachValid(results.allNewAssignments));
+	console.log("areValid(newAssignments) " + dayOffValidation.areValid(results.allNewAssignments));
 
 	let distributeODs = new DistributeODs(allStaff, pastAssignments, allDays);
 	distributeODs.distributeEachDay(4, 6)

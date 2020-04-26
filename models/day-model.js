@@ -22,7 +22,7 @@ class DayModel {
         const day = [];
         
         for(const row of rows) {
-          day.push(new  DayEntity(row.id, row.dayOfCamp, row.rotatingOD, row.everyoneInCamp, row.colourChangeover, row.bunkNight, row.unitFieldTrip, row.unitPlay, row.noHeadStaffDayOff, row.normalOD, row.unitCanoeTrip, row.cabinOvernight, row.useItOrLooseIt, row.colourWarsPrep, row.waldenGamesPrep));
+          day.push(new  DayEntity(row.id, row.dayOfCamp, row.rotatingOD, row.everyoneInCamp, row.colourChangeover, row.bunkNight, row.unitFieldTrip, row.unitPlay, row.noHeadStaffDayOff, row.normalOD, row.halfUnitCanoeTrip, row.cabinOvernight, row.useItOrLooseIt, row.colourWarsPrep, row.waldenGamesPrep));
         }
         return day;
       });
@@ -43,7 +43,7 @@ class DayModel {
     
     return this.model.findOne(sql, params)
       .then((row) => {
-        return new DayEntity(row.id, row.dayOfCamp, row.rotatingOD, row.everyoneInCamp, row.colourChangeover, row.bunkNight, row.unitFieldTrip, row.unitPlay, row.noHeadStaffDayOff, row.normalOD, row.unitCanoeTrip, row.cabinOvernight, row.useItOrLooseIt, row.colourWarsPrep, row.waldenGamesPrep);
+        return new DayEntity(row.id, row.dayOfCamp, row.rotatingOD, row.everyoneInCamp, row.colourChangeover, row.bunkNight, row.unitFieldTrip, row.unitPlay, row.noHeadStaffDayOff, row.normalOD, row.halfUnitCanoeTrip, row.cabinOvernight, row.useItOrLooseIt, row.colourWarsPrep, row.waldenGamesPrep);
       });
   }
 
@@ -83,7 +83,7 @@ class DayModel {
         unitPlay,
         noHeadStaffDayOff,
         normalOD,
-        unitCanoeTrip,
+        halfUnitCanoeTrip,
         cabinOvernight,
         useItOrLooseIt
       ) VALUES (
@@ -98,7 +98,7 @@ class DayModel {
         $unitPlay,
         $noHeadStaffDayOff,
         $normalOD,
-        $unitCanoeTrip,
+        $halfUnitCanoeTrip,
         $cabinOvernight,
         $useItOrLooseIt
       )
@@ -115,7 +115,7 @@ class DayModel {
       $unitPlay : day.unitPlay,
       $noHeadStaffDayOff : day.noHeadStaffDayOff,
       $normalOD : day.normalOD,
-      $unitCanoeTrip : day.unitCanoeTrip,
+      $halfUnitCanoeTrip : day.halfUnitCanoeTrip,
       $cabinOvernight : day.cabinOvernight,
       $useItOrLooseIt : day.useItOrLooseIt
     };
@@ -142,7 +142,7 @@ class DayModel {
         unitPlay,
         noHeadStaffDayOff,
         normalOD,
-        unitCanoeTrip,
+        halfUnitCanoeTrip,
         cabinOvernight,
         useItOrLooseIt
       ) VALUES (
@@ -158,7 +158,7 @@ class DayModel {
         $unitPlay,
         $noHeadStaffDayOff,
         $normalOD,
-        $unitCanoeTrip,
+        $halfUnitCanoeTrip,
         $cabinOvernight,
         $useItOrLooseIt
       )
@@ -176,7 +176,7 @@ class DayModel {
       $unitPlay : day.unitPlay,
       $noHeadStaffDayOff : day.noHeadStaffDayOff,
       $normalOD : day.normalOD,
-      $unitCanoeTrip : day.unitCanoeTrip,
+      $halfUnitCanoeTrip : day.halfUnitCanoeTrip,
       $cabinOvernight : day.cabinOvernight,
       $useItOrLooseIt : day.useItOrLooseIt
     };

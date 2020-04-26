@@ -48,7 +48,7 @@ class DayController {
     day.unitPlay = req.body.unitPlay;
     day.noHeadStaffDayOff = req.body.noHeadStaffDayOff;
     day.normalOD = req.body.normalOD;
-    day.unitCanoeTrip = req.body.unitCanoeTrip;
+    day.halfUnitCanoeTrip = req.body.halfUnitCanoeTrip;
     day.cabinOvernight = req.body.cabinOvernight;
     day.useItOrLooseIt = req.body.useItOrLooseIt;
     
@@ -58,7 +58,7 @@ class DayController {
   }
   
   update(req, res) {
-    const day = new DayEntity(req.params.id, req.body.dayOfCamp, req.body.rotatingOD, req.body.everyoneInCamp, req.body.colourChangeover, req.body.bunkNight, req.body.unitFieldTrip, req.body.unitPlay, req.body.noHeadStaffDayOff, req.body.normalOD, req.body.unitCanoeTrip, req.body.cabinOvernight, req.body.useItOrLooseIt, req.body.colourWarsPrep, req.body.waldenGamesPrep);
+    const day = new DayEntity(req.params.id, req.body.dayOfCamp, req.body.rotatingOD, req.body.everyoneInCamp, req.body.colourChangeover, req.body.bunkNight, req.body.unitFieldTrip, req.body.unitPlay, req.body.noHeadStaffDayOff, req.body.normalOD, req.body.halfUnitCanoeTrip, req.body.cabinOvernight, req.body.useItOrLooseIt, req.body.colourWarsPrep, req.body.waldenGamesPrep);
   
     this.dayModel.update(day)
       .then(this.controller.editSuccess(res))

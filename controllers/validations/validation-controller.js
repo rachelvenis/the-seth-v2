@@ -27,22 +27,24 @@ class ValidationController {
 	setAllAssignments(newPastAssignments){
 		pastAssignments = newPastAssignments;
 	}
-	// TODO should be half unit not unit
+
 	// TODO isCounsellor is duplicate logic here - added for testing. should be removed.
 	canoeTrip(staff, day){
-		let result = !(staff.unit == day.unitCanoeTrip);
+		let result = !(staff.halfUnit == day.halfUnitCanoeTrip);
 		if (!result) isValidErrorMessages.push("canoeTrip - " + staff.firstName + staff.lastName);
 		return this.isCounsellor(staff) ? result : true;
 	}
+
 	colourCounsellorOvernight(staff, day){
-		let result = staff.unit == "colours" ? 
+		let result = staff.halfUnit == "colours" ? 
 			!staff.cabin == day.cabinOvernight :
 			true;
 		if (!result) isValidErrorMessages.push("colourCounsellorOvernight - " + staff.firstName + staff.lastName);
 		return this.isCounsellor(staff) ? result : true;
 	}
+
 	colourCounsellorChangeover(staff, day){
-		let result = staff.unit == "colours" ? 
+		let result = staff.halfUnit == "colours" ? 
 			!day.colourChangeover :
 			true;
 		if (!result) isValidErrorMessages.push("colourCounsellorChangeover - " + staff.firstName + staff.lastName + ", " + day.dayOfCamp);
