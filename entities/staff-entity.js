@@ -13,7 +13,10 @@ class StaffEntity {
 	this.gender = gender;
   this.firstName = firstName;
   this.lastName = lastName;
-    this.ODCount = 0;
+  this.ODCount = 0;
+  this.dayOffCount = 0;
+  this.lastDayOff = 0;
+  this.allowedDaysOff = 6;
   }
 
   setColourWarsDuty(value) {
