@@ -34,6 +34,22 @@ class DayOffValidationController extends ValidationController {
     this.allStaff = allStaffIn;
     this.allAssignments = allAssignmentsIn;
     this.allDays = allDaysIn;
+    this.applyPastAssignments();
+  }
+
+  applyPastAssignments() {
+    for (let i = 0; i < this.allAssignments.length; i++) {
+      let assignment = this.allAssignments[i];
+      console.log("staffId = " + assignment.staffId + ", dayId = " + assignment.dayId + ", type = " + assignment.type + ", halfUnit = " + assignment.halfUnit)
+      if (assignment.type == "0") {
+        this.allStaff[assignment.staffId].dayOffCount++;
+        this.allStaff[assignment.staffId].lastDayOff = this.allDays[assignment.dayId].dayOfCamp;
+        console.log(this.allStaff[assignment.staffId].firstName + " now has dayOffCount = " + this.allStaff[assignment.staffId].dayOffCount + " and lastDayOff = " + this.allStaff[assignment.staffId].lastDayOff);
+      } else if (assignment.type == "1") {
+        this.allStaff[assignment.staffId].ODCount++;
+        console.log(this.allStaff[assignment.staffId].firstName + " now has ODCount = " + this.allStaff[assignment.staffId].ODCount);
+      }
+    }
   }
 
   eachValid(assignments) {
