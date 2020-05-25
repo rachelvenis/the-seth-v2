@@ -6,13 +6,12 @@ const cabinCounsellorQuotas = {};
 const seekerCabinQuotas = {};
 
 let isValidErrorMessages = [];
+let areValidErrorMessages = [];
 
 let allStaff = [];
 let allAssignments = [];
 let allDays = [];
 // const allStaff = [];
-
-let areValidErrorMessages = [];
 
 let halfUnitToUnitMapping = {
   "colours": "colours",
@@ -34,20 +33,19 @@ class DayOffValidationController extends ValidationController {
     this.allStaff = allStaffIn;
     this.allAssignments = allAssignmentsIn;
     this.allDays = allDaysIn;
+    this.isValidErrorMessages = [];
+    this.areValidErrorMessages = [];
     this.applyPastAssignments();
   }
 
   applyPastAssignments() {
     for (let i = 0; i < this.allAssignments.length; i++) {
       let assignment = this.allAssignments[i];
-      console.log("staffId = " + assignment.staffId + ", dayId = " + assignment.dayId + ", type = " + assignment.type + ", halfUnit = " + assignment.halfUnit)
       if (assignment.type == "0") {
         this.allStaff[assignment.staffId].dayOffCount++;
         this.allStaff[assignment.staffId].lastDayOff = this.allDays[assignment.dayId].dayOfCamp;
-        console.log(this.allStaff[assignment.staffId].firstName + " now has dayOffCount = " + this.allStaff[assignment.staffId].dayOffCount + " and lastDayOff = " + this.allStaff[assignment.staffId].lastDayOff);
       } else if (assignment.type == "1") {
         this.allStaff[assignment.staffId].ODCount++;
-        console.log(this.allStaff[assignment.staffId].firstName + " now has ODCount = " + this.allStaff[assignment.staffId].ODCount);
       }
     }
   }
@@ -56,16 +54,14 @@ class DayOffValidationController extends ValidationController {
     let result = true;
     for (let i = 0; i < assignments.length; i++) {
       if (!this.isValid(assignments[i])) {
-        let result = false;
-        for (let j = 0; j < isValidErrorMessages.length; j++) {
-          errorMessage += "assignment " + i + " - " +
-            isValidErrorMessages[j] + "\n";
-        }
+        result = false;
+        // for (let j = 0; j < isValidErrorMessages.length; j++) {
+        //   errorMessage += isValidErrorMessages[j] + "\n";
+        // }
       }
-      isValidErrorMessages = [];
+      // isValidErrorMessages = [];
     }
-    console.log("errorMessage: ", errorMessage);
-    return;
+    return result;
   }
 
   isValid(assignment) {
@@ -164,7 +160,7 @@ updateSeekerCabinQuotas(allStaff){
         oneThirdOfOlder &&
         specialtyQuota &&
         seekerCabinQuota;
-    console.log("errorMessages | areValid - " + areValidErrorMessages);
+    // console.log("errorMessages | areValid - " + areValidErrorMessages);
     return result;
   }
 
@@ -172,7 +168,7 @@ updateSeekerCabinQuotas(allStaff){
   //individual validations
   unitTrip(staff, day){
     let result = !(halfUnitToUnitMapping[staff.halfUnit] == day.unitFieldTrip);
-    if (!result) isValidErrorMessages.push(staff.firstName + staff.lastName +
+    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
       " cannot go on a day off on " + day.dayOfCamp + " because their unit(" +
       day.unitFieldTrip + ") is on their unit trip.");
     return result;
@@ -180,7 +176,7 @@ updateSeekerCabinQuotas(allStaff){
 
   unitPlay(staff, day){
     let result = !(halfUnitToUnitMapping[staff.halfUnit] == day.unitPlay);
-    if (!result) isValidErrorMessages.push(staff.firstName + staff.lastName +
+    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
       " cannot go on a day off on " + day.dayOfCamp + " because their unit(" +
       day.unitPlay + ")'s play is that night");
     return result;
@@ -188,7 +184,7 @@ updateSeekerCabinQuotas(allStaff){
 
   noHeadStaffDayOff(staff, day){
     let result = staff.staffType == 1 ? !day.noHeadStaffDayOff : true;
-    if (!result) isValidErrorMessages.push(staff.firstName + staff.lastName +
+    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
       " cannot go on a day off on " + day.dayOfCamp + " because they are a " +
       "headstaff and there are no head staff day offs allowed on this day.");
     return result;
@@ -196,14 +192,14 @@ updateSeekerCabinQuotas(allStaff){
 
   haveDayOffLeft(staff){
     let result = staff.dayOffCount <= staff.allowedDaysOff; 
-    if (!result) isValidErrorMessages.push(staff.firstName + staff.lastName +
+    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
       " cannot go on a day off because they don't have any days off left.");
     return result;
   }
 
   everyoneInCamp(day){
     let result = !day.everyoneInCamp;
-    if (!result) isValidErrorMessages.push(// worth having staff here for error message? staff.firstName + staff.lastName +
+    if (!result) this.isValidErrorMessages.push(// worth having staff here for error message? staff.firstName + staff.lastName +
       "Cannot go on a day off on " + day.dayOfCamp + " because everyone must be in camp that day.");
     return result;
   }
@@ -213,7 +209,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = staff.lastDayOff != 0 ?
       day.dayOfCamp - staff.lastDayOff > 4 :
       true;
-    if (!result) isValidErrorMessages.push(staff.firstName + staff.lastName +
+    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
       " cannot go on a day off on " + day.dayOfCamp + " because their last day" +
       " off was not at least 3 nights in camp");
     return result;
@@ -233,7 +229,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = true;
     for(const cabin in currentCabinCounts) {
       if ((cabinCounsellorQuotas[cabin]/2) < currentCabinCounts[cabin]){
-        areValidErrorMessages.add("More than half of the counsellors in " +
+        this.areValidErrorMessages.add("More than half of the counsellors in " +
           cabin + " are trying to take a day off on the same day");
         let result = false;
       }
@@ -256,7 +252,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = true;
     for(const quota in currentQuotaCounts) {
       if ((olderQuotas[quota]/3) < currentQuotaCounts[quota]){
-        areValidErrorMessages.add("More than one third of the staff on " + pair.getKey() +
+        this.areValidErrorMessages.add("More than one third of the staff on " + pair.getKey() +
           " are trying to take days off on the same day");
         let result = false;
       }
@@ -275,7 +271,7 @@ updateSeekerCabinQuotas(allStaff){
           currentSpecialtyCounts[currentStaff.cabin] : 0;
         newCount = pastCount + 1;
         if (newCount > specialtyQuotas[currentStaff.role]){
-          areValidErrorMessages.push("More than " + specialtyQuotas[currentStaff.role] +
+          this.areValidErrorMessages.push("More than " + specialtyQuotas[currentStaff.role] +
             " " + currentStaff.role + " staff are trying to take days off on the same day");
           return false;
         }
@@ -297,7 +293,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = true;
     for(const quota in currentQuotaCounts) {
       if ((seekerCabinQuotas[quota]/2) < currentQuotaCounts[quota]){
-          areValidErrorMessages.push("More than " + quota +
+          this.areValidErrorMessages.push("More than " + quota +
             " " + currentQuotaCounts[quota] + " staff are trying to take days off on the same day");
         let result = false;
       }

@@ -13,10 +13,6 @@ router.get('/:id', (req, res) => {
   dayController.findById(req, res);
 });
 
-// router.get('/byUsername/:username', (req, res) => {
-//   dayController.findByUsername(req, res);
-// });
-
 router.post('/', (req, res) => {
   dayController.create(req, res);
 });

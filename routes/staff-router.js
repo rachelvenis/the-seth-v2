@@ -13,10 +13,6 @@ router.get('/:id', (req, res) => {
   staffController.findById(req, res);
 });
 
-// router.get('/byUsername/:username', (req, res) => {
-//   staffController.findByUsername(req, res);
-// });
-
 router.post('/', (req, res) => {
   staffController.create(req, res);
 });
