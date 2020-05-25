@@ -16,34 +16,49 @@ let distributeODs;
 
 class ActionController {
   constructor() {
-	const loadExampleData = new LoadExampleData();
-	loadExampleData.run().then((results) => {
-		pastAssignments = results.allPastAssignments;
-		newAssignments = results.allNewAssignments;
-		allStaff = results.allStaff;
-		allDays = results.allDays;
-		dayOffValidation = new DayOffValidation(allStaff, pastAssignments, allDays);
-		distributeODs = new DistributeODs(allStaff, pastAssignments, allDays);
-	});
+    const loadExampleData = new LoadExampleData();
+    loadExampleData.run().then((results) => {
+        pastAssignments = results.allPastAssignments;
+        newAssignments = results.allNewAssignments;
+        allStaff = results.allStaff;
+        allDays = results.allDays;
+        dayOffValidation = new DayOffValidation(allStaff, pastAssignments, allDays);
+        distributeODs = new DistributeODs(allStaff, pastAssignments, allDays);
+    });
   }
 
   validateDO(res) {
-  	dayOffValidation.eachValid(newAssignments);
-  	dayOffValidation.areValid(newAssignments);
-  	const result = {
-  		assignments: [[0, 1, 2]],
-		errors: { eachValid: dayOffValidation.isValidErrorMessages, 
-			areValid: dayOffValidation.areValidErrorMessages}};
-	res.json(result);
+    dayOffValidation.eachValid(newAssignments);
+    dayOffValidation.areValid(newAssignments);
+    const result = {
+        assignments: this.prepare(dayOffValidation.validAssignments),
+        errors: { eachValid: dayOffValidation.isValidErrorMessages, 
+            areValid: dayOffValidation.areValidErrorMessages}};
+    res.json(result);
   }
 
   distributeOD(req, res) {
-	distributeODs.distributeEachDay(req.body.start, req.body.end);
-  	const result = {
-  		assignments: [[1, 2, 3]],
-		errors: { eachValid: dayOffValidation.isValidErrorMessages, 
-			areValid: dayOffValidation.areValidErrorMessages}};
-	res.json(result);
+    const assignments = distributeODs.distributeEachDay(
+        req.body.start, req.body.end);
+    const result = {
+        assignments: this.prepare(assignments),
+        errors: {
+            eachValid: dayOffValidation.isValidErrorMessages,
+            areValid: dayOffValidation.areValidErrorMessages
+        }
+    };
+    res.json(result);
+  }
+
+  prepare(assignments) {
+    let results = [];
+    for (let i = 0; i < assignments.length; i++) {
+        results.push([
+            assignments[i].staffId,
+            assignments[i].dayId,
+            assignments[i].halfUnit]);
+    }
+    return results;
   }
 }
 

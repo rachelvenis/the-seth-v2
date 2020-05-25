@@ -23,6 +23,8 @@ let halfUnitToUnitMapping = {
   "keepers": "seekers"
 }
 
+let validAssignments = [];
+
 // const currentYear = 2019
 
 let errorMessage = "";
@@ -35,6 +37,7 @@ class DayOffValidationController extends ValidationController {
     this.allDays = allDaysIn;
     this.isValidErrorMessages = [];
     this.areValidErrorMessages = [];
+    this.validAssignments = [];
     this.applyPastAssignments();
   }
 
@@ -52,14 +55,13 @@ class DayOffValidationController extends ValidationController {
 
   eachValid(assignments) {
     let result = true;
+    this.validAssignments = [];
     for (let i = 0; i < assignments.length; i++) {
       if (!this.isValid(assignments[i])) {
         result = false;
-        // for (let j = 0; j < isValidErrorMessages.length; j++) {
-        //   errorMessage += isValidErrorMessages[j] + "\n";
-        // }
+      } else {
+        this.validAssignments.push(assignments[i]);
       }
-      // isValidErrorMessages = [];
     }
     return result;
   }
@@ -160,7 +162,6 @@ updateSeekerCabinQuotas(allStaff){
         oneThirdOfOlder &&
         specialtyQuota &&
         seekerCabinQuota;
-    // console.log("errorMessages | areValid - " + areValidErrorMessages);
     return result;
   }
 
@@ -205,7 +206,6 @@ updateSeekerCabinQuotas(allStaff){
   }
 
   threeNightsBetween(staff,day){
-    console.log("staff.lastDayOff of " + staff.firstName + staff.lastName + " is " + staff.lastDayOff);
     let result = staff.lastDayOff != 0 ?
       day.dayOfCamp - staff.lastDayOff > 4 :
       true;
