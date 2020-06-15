@@ -72,34 +72,61 @@ class StaffModel {
   create(staff) {
     const sql = `
       INSERT INTO staff (
+        id,
+        firstName,
+        lastName,
+        od_count,
+        allowed_days_off,
+        colour_wars_duty,
+        walden_games_duty,
+        rotating_od,
         birth_year,
         half_unit,
         new_to_walden,
+        day_off_count,
         head_staff,
         cabin,
-        role,
         gender,
-        name
+        last_day_off,
+        role
       ) VALUES (
-        $birthYear,
+        $id,
+        $firstName,
+        $lastName,
+        $od_count,
+        $allowed_days_off,
+        $colour_wars_duty,
+        $walden_games_duty,
+        $rotating_od,
+        $birth_year,
         $half_unit,
         $new_to_walden,
+        $day_off_count,
         $head_staff,
         $cabin,
-        $role,
         $gender,
-        $name
+        $last_day_off,
+        $role
       )
     `;
     const params = {
-      $birthYear : staff.birthYear,
-      $half_unit : staff.halfUnit,
-      $new_to_walden : staff.newToWalden,
-      $head_staff : staff.headStaff,
-      $cabin : staff.cabin,
-      $role : staff.role,
-      $gender : staff.gender,
-      $name : staff.name
+        $id: staff.id,
+        $firstName: staff.firstName,
+        $lastName: staff.lastName,
+        $od_count: staff.od_count,
+        $allowed_days_off: staff.allowed_days_off,
+        $colour_wars_duty: staff.colour_wars_duty,
+        $walden_games_duty: staff.walden_games_duty,
+        $rotating_od: staff.rotating_od,
+        $birth_year: staff.birthYear,
+        $half_unit: staff.halfUnit,
+        $new_to_walden: staff.new_to_walden,
+        $day_off_count: staff.day_off_count,
+        $head_staff: staff.head_staff,
+        $cabin: staff.cabin,
+        $gender: staff.gender,
+        $last_day_off: staff.last_day_off,
+        $role: staff.role
     };
     
     return this.model.run(sql, params)

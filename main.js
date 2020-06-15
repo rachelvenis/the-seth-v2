@@ -1,4 +1,3 @@
-
 const LoadExampleData = require('./loadExampleData');
 const DayOffValidation = require('./controllers/validations/day-off-validations-controller.js');
 const DistributeODs = require('./controllers/distribute-ods.js');

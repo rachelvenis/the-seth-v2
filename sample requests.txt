@@ -45,3 +45,12 @@ curl --header "Content-Type: application/json" \
   curl --header "Content-Type: application/json" \
   --request DELETE \
   http://localhost:3000/api/assignments/2
+
+  -------------------------
+
+  curl --header "Content-Type: application/json" \
+  --request POST \
+  http://localhost:3100/api/action/validateDO
+
+
+  curl --header "Content-Type: application/json" --request POST --data '{"start": "4", "end": "6"}' http://localhost:3100/api/actions/distributeOD

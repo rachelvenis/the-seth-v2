@@ -3,22 +3,20 @@ const sqliite3 = require('sqlite3').verbose();
 const db = new sqliite3.Database('./db/sqlite3-database.db');
 
 const init = () => {
-
-    // db.run(`DROP TABLE IF EXISTS staff`);
     db.run(`CREATE TABLE IF NOT EXISTS staff(
       id                INTEGER  PRIMARY KEY  AUTOINCREMENT,
-      name              TEXT NOT NULL,
+      firstName         TEXT NOT NULL,
+      lastName          TEXT NOT NULL,
       od_count          INTEGER,
       allowed_days_off  INTEGER,
       colour_wars_duty  INTEGER,
       walden_games_duty INTEGER,
       rotating_od       INTEGER,
       birth_year        INTEGER NOT NULL,
-      unit              TEXT NOT NULL,
       half_unit         TEXT NOT NULL,
-      new_to_walden     INTEGER NOT NULL,
+      new_to_walden     INTEGER DEFAULT 0,
       day_off_count     INTEGER,
-      head_staff        INTEGER NOT NULL,
+      head_staff        INTEGER DEFAULT 0,
       cabin             TEXT NOT NULL,
       gender            TEXT NOT NULL,
       last_day_off      INTEGER,
