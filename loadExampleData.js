@@ -89,7 +89,7 @@ class LoadExampleData {
 				row["StaffIndex"],
 				row["DayIndex"],
 				row["type"],
-				"halfUnit"
+				row["halfUnit"]
 			));
 		    assignmentId++;
 		  })

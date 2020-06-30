@@ -24,6 +24,7 @@ loadExampleData.run().then((results) => {
 	console.log("eachValid(newAssignments) " + dayOffValidation.eachValid(results.allNewAssignments));
 	console.log("areValid(newAssignments) " + dayOffValidation.areValid(results.allNewAssignments));
 
+	console.log(dayOffValidation.validAssignments);
 	let distributeODs = new DistributeODs(allStaff, pastAssignments, allDays);
-	distributeODs.distributeEachDay(4, 6)
+	distributeODs.distributeEachDay(4, 9)
   });

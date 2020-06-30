@@ -8,6 +8,7 @@ class AssignmentEntity {
 	this.dayId = dayId;
 	this.type = type; // 0 = day off, 1 = od
 	this.halfUnit = halfUnit;
+	this.errorMessages = [];
   }
 }
 

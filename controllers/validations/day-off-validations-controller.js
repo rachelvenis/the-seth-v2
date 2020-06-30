@@ -24,14 +24,14 @@ let halfUnitToUnitMapping = {
 }
 
 let validAssignments = [];
+let quotas = [];
 
 // const currentYear = 2019
 
 let errorMessage = "";
 class DayOffValidationController extends ValidationController {
   constructor(allStaffIn, allAssignmentsIn, allDaysIn) {
-    super()     
-    // this.validationModel = new ValidationModel();
+    super(allStaffIn, allAssignmentsIn, allDaysIn)
     this.allStaff = allStaffIn;
     this.allAssignments = allAssignmentsIn;
     this.allDays = allDaysIn;
@@ -57,30 +57,25 @@ class DayOffValidationController extends ValidationController {
     let result = true;
     this.validAssignments = [];
     for (let i = 0; i < assignments.length; i++) {
-      if (!this.isValid(assignments[i])) {
-        result = false;
-      } else {
-        this.validAssignments.push(assignments[i]);
-      }
+      console.log(assignments[i]);
+      this.isValid(assignments[i]);
     }
     return result;
   }
 
   isValid(assignment) {
-    const staff = this.allStaff[assignment.staffId];
-    const day = this.allDays[assignment.dayId];
-    const nextDayIndex = parseInt(assignment.dayId) + 1;
-    const nextDay = this.allDays[nextDayIndex];
-    return this.threeNightsBetween(staff, day) &&
-           this.everyoneInCamp(day) && this.noHeadStaffDayOff(staff, day) &&
-           this.haveDayOffLeft(staff) &&
-           ( this.isCounsellor(staff) ?
-                this.canoeTrip(staff, day) &&
-                this.unitTrip(staff, nextDay) &&
-                this.unitPlay(staff, day) &&
-                this.colourCounsellorOvernight(staff, day) &&
-                this.colourCounsellorChangeover(staff, day) :
-                true); 
+    this.threeNightsBetween(assignment);
+    this.everyoneInCamp(assignment);
+    this.noHeadStaffDayOff(assignment);
+    this.haveDayOffLeft(assignment);
+    if(this.isCounsellor(assignment)) {
+      this.canoeTrip(assignment);
+      this.unitTrip(assignment);
+      this.unitPlay(assignment);
+      this.colourCounsellorOvernight(assignment);
+      this.colourCounsellorChangeover(assignment);
+    }
+    this.validAssignments.push(assignment);
   }
 
   updateOlderQuotas(allStaff) {
@@ -154,64 +149,66 @@ updateSeekerCabinQuotas(allStaff){
     this.updateOlderQuotas(allStaff);
     this.updateCabinCounsellorQuotas(allStaff);
     this.updateSeekerCabinQuotas(allStaff);
-    let halfCounsellors = this.halfCounsellors(allStaff,assignments);
-    let oneThirdOfOlder = this.oneThirdOfOlder(allStaff,assignments);
-    let specialtyQuota = this.specialtyQuota(allStaff,assignments);
-    let seekerCabinQuota = this.seekerCabinQuota(allStaff,assignments);
-    let result = halfCounsellors &&
-        oneThirdOfOlder &&
-        specialtyQuota &&
-        seekerCabinQuota;
-    return result;
+    this.halfCounsellors(allStaff,assignments);
+    this.oneThirdOfOlder(allStaff,assignments);
+    this.specialtyQuota(allStaff,assignments);
+    this.seekerCabinQuota(allStaff,assignments);
   }
 
 
   //individual validations
-  unitTrip(staff, day){
+  unitTrip(assignment){
+    const staff = this.allStaff[assignment.staffId];
+    const day = this.allDays[assignment.dayId];
     let result = !(halfUnitToUnitMapping[staff.halfUnit] == day.unitFieldTrip);
-    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
-      " cannot go on a day off on " + day.dayOfCamp + " because their unit(" +
-      day.unitFieldTrip + ") is on their unit trip.");
+    if (!result) assignment.errorMessages.push("unit(" + day.unitFieldTrip + 
+      ") is on their unit trip.");
     return result;
   }
 
-  unitPlay(staff, day){
+  unitPlay(assignment){
+    const staff = this.allStaff[assignment.staffId];
+    const day = this.allDays[assignment.dayId];
     let result = !(halfUnitToUnitMapping[staff.halfUnit] == day.unitPlay);
-    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
-      " cannot go on a day off on " + day.dayOfCamp + " because their unit(" +
-      day.unitPlay + ")'s play is that night");
+    if (!result) assignment.errorMessages.push("unit(" + day.unitPlay +
+      ") play is that night");
     return result;
   }
 
-  noHeadStaffDayOff(staff, day){
+  noHeadStaffDayOff(assignment){
+    const staff = this.allStaff[assignment.staffId];
+    const day = this.allDays[assignment.dayId];
     let result = staff.staffType == 1 ? !day.noHeadStaffDayOff : true;
-    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
-      " cannot go on a day off on " + day.dayOfCamp + " because they are a " +
-      "headstaff and there are no head staff day offs allowed on this day.");
+    if (!result) assignment.errorMessages.push("no head staff day " + 
+      "offs allowed on this day");
     return result;
   }
 
-  haveDayOffLeft(staff){
+  haveDayOffLeft(assignment){
+    const staff = this.allStaff[assignment.staffId];
     let result = staff.dayOffCount <= staff.allowedDaysOff; 
-    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
-      " cannot go on a day off because they don't have any days off left.");
+    if (!result) assignment.errorMessages.push("don't have any days " + 
+      "off left");
     return result;
   }
 
-  everyoneInCamp(day){
+  everyoneInCamp(assignment){
+    const staff = this.allStaff[assignment.staffId];
+    const day = this.allDays[assignment.dayId];
     let result = !day.everyoneInCamp;
-    if (!result) this.isValidErrorMessages.push(// worth having staff here for error message? staff.firstName + staff.lastName +
-      "Cannot go on a day off on " + day.dayOfCamp + " because everyone must be in camp that day.");
+    if (!result) assignment.errorMessages.push(// worth having staff here for error message? staff.firstName + staff.lastName +
+      "everyone must be in camp that day.");
     return result;
   }
 
-  threeNightsBetween(staff,day){
+  threeNightsBetween(assignment){
+    const staff = this.allStaff[assignment.staffId];
+    const day = this.allDays[assignment.dayId];
     let result = staff.lastDayOff != 0 ?
       day.dayOfCamp - staff.lastDayOff > 4 :
       true;
-    if (!result) this.isValidErrorMessages.push(staff.firstName + staff.lastName +
-      " cannot go on a day off on " + day.dayOfCamp + " because their last day" +
-      " off was not at least 3 nights in camp");
+    if (!result) assignment.errorMessages.push("last day " + 
+      "off was not at least 3 nights in camp");
     return result;
   }
 

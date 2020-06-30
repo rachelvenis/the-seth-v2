@@ -5,13 +5,17 @@ const router = express.Router();
 const ActionsController = require('../controllers/actions-controller');
 const actionsController = new ActionsController();
 
-router.get('/validateDO', (req, res) => {
-  actionsController.validateDO(res);
+router.post('/validateDO', (req, res) => {
+  actionsController.validateDO(req, res);
 });
 
 router.post('/distributeOD', (req, res) => {
-  console.log("before calling distrubtue");
   actionsController.distributeOD(req, res);
+});
+
+router.get('/generatePDF', (req, res) => {
+	// console.log('hey dude');
+  actionsController.generatePDF(res);
 });
 
 module.exports = router;

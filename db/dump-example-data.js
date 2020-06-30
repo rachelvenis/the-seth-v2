@@ -1,10 +1,25 @@
 const StaffModel  = require('../models/staff-model');
+const AssignmentModel  = require('../models/assignment-model');
+
 const LoadExampleData = require('../loadExampleData');
 const db = require('./db');
 
 const staffModel = new StaffModel();
+const assignmentModel = new AssignmentModel();
 
-// db.db.run(`DROP TABLE IF EXISTS staff`);
+// db.db.run(`DROP TABLE IF EXISTS assignment`);
+
+// db.db.run(`CREATE TABLE IF NOT EXISTS assignment(
+//   id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
+//   dayId         INTEGER NOT NULL, 
+//   staffId       INTEGER NOT NULL,
+//   type          TEXT,
+//   halfUnit      TEXT,
+//   FOREIGN KEY(dayId) REFERENCES day(id),
+//   FOREIGN KEY(staffId) REFERENCES staff(id)
+// )`);
+
+
 // db.db.run(`CREATE TABLE IF NOT EXISTS staff(
 //   id                INTEGER  PRIMARY KEY  AUTOINCREMENT,
 //   firstName         TEXT NOT NULL,
@@ -25,14 +40,26 @@ const staffModel = new StaffModel();
 //   role              TEXT NOT NULL
 // )`);
 
+// const loadExampleData = new LoadExampleData();
+// loadExampleData.run().then((results) => {
+// 	// pastAssignments = results.allPastAssignments;
+// 	// newAssignments = results.allNewAssignments;
+//     // db.init();
+// 	for(const staff of results.allStaff) {
+// 		console.log(staff.firstName);
+// 		staffModel.create(staff);
+// 	};
+// 	// allDays = results.allDays;
+//   });
+
 const loadExampleData = new LoadExampleData();
 loadExampleData.run().then((results) => {
 	// pastAssignments = results.allPastAssignments;
 	// newAssignments = results.allNewAssignments;
     // db.init();
-	for(const staff of results.allStaff) {
-		console.log(staff.firstName);
-		staffModel.create(staff);
+	for(const assignment of results.allPastAssignments) {
+		console.log(assignment.halfUnit);
+		assignmentModel.create(assignment);
 	};
 	// allDays = results.allDays;
   });

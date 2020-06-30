@@ -26,12 +26,13 @@ class DistributeODs {
         this.allStaff = allStaffIn;
         this.pastAssignments = pastAssignmentsIn;
         this.allDays = allDaysIn;
-        this.assignedODs = [];
+        this.assignedODs = {};
     }
 
     distributeEachDay(start_day_index, end_day_index) {
         let temp_result;
         for(let i = start_day_index; i <= end_day_index; i++) {
+            console.log(i);
             this.getODAssignments(this.allDays[i]);
         }
 
@@ -62,7 +63,12 @@ class DistributeODs {
                         // if (!result) this.isValidErrorMessages.push("hasColourWarsDuties - " + staff.name);
                     } else {
                         // console.log("assigned " + staff.firstName + " " + staff.lastName + ", " + halfUnit + ", " + gender);
-                        this.assignedODs.push(new ODAssignment(staff.id, day.id, halfUnit));
+                        let days = this.assignedODs[day.id];
+                        if (days == null) {
+                            days = [];
+                        }
+                        days.push(new ODAssignment(staff.id, day.id, halfUnit));
+                        this.assignedODs[day.id] = days;
                     }
                 }
             }

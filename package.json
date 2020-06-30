@@ -3,23 +3,27 @@
   "scripts": {
     "start": "expo start",
     "start-be": "node index.js",
-    "test": "jest"
+    "test": "jest",
+    "devserver": "./node_modules/nodemon/bin/nodemon.js index.js"
   },
   "dependencies": {
     "axios": "^0.18.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "browserify": "^16.5.1",
     "csv-parser": "^2.3.2",
     "express": "^4.16.4",
+    "fs": "0.0.1-security",
     "node-pre-gyp": "^0.14.0",
-    "nodemon": "^1.18.9",
+    "pdfkit": "^0.11.0",
     "react": "16.5.0",
     "sqlite": "^3.0.3",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
-    "jest": "^25.2.3"
+    "jest": "^25.2.3",
+    "nodemon": "^1.19.4"
   },
   "private": true,
   "name": "the-seth-v2",

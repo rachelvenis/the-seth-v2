@@ -29,28 +29,60 @@ class ValidationController {
 	}
 
 	// TODO isCounsellor is duplicate logic here - added for testing. should be removed.
-	canoeTrip(staff, day){
+	// canoeTrip(staff, day){
+	// 	let result = !(staff.halfUnit == day.halfUnitCanoeTrip);
+	// 	if (!result) isValidErrorMessages.push("canoeTrip - " + staff.firstName + staff.lastName);
+	// 	return this.isCounsellor(staff) ? result : true;
+	// }
+
+	canoeTrip(assignment){
+    	const staff = this.allStaff[assignment.staffId];
+    	const day = this.allDays[assignment.dayId];
 		let result = !(staff.halfUnit == day.halfUnitCanoeTrip);
 		if (!result) isValidErrorMessages.push("canoeTrip - " + staff.firstName + staff.lastName);
-		return this.isCounsellor(staff) ? result : true;
+		return this.isCounsellor(assignment) ? result : true;
 	}
 
-	colourCounsellorOvernight(staff, day){
+	// colourCounsellorOvernight(staff, day){
+	// 	let result = staff.halfUnit == "colours" ? 
+	// 		!staff.cabin == day.cabinOvernight :
+	// 		true;
+	// 	if (!result) isValidErrorMessages.push("colourCounsellorOvernight - " + staff.firstName + staff.lastName);
+	// 	return this.isCounsellor(staff) ? result : true;
+	// }
+
+	colourCounsellorOvernight(assignment){
+    	const day = this.allDays[assignment.dayId];
+    	const staff = this.allStaff[assignment.staffId];
 		let result = staff.halfUnit == "colours" ? 
 			!staff.cabin == day.cabinOvernight :
 			true;
 		if (!result) isValidErrorMessages.push("colourCounsellorOvernight - " + staff.firstName + staff.lastName);
-		return this.isCounsellor(staff) ? result : true;
+		return this.isCounsellor(assignment) ? result : true;
 	}
 
-	colourCounsellorChangeover(staff, day){
+	// colourCounsellorChangeover(staff, day){
+	// 	let result = staff.halfUnit == "colours" ? 
+	// 		!day.colourChangeover :
+	// 		true;
+	// 	if (!result) isValidErrorMessages.push("colourCounsellorChangeover - " + staff.firstName + staff.lastName + ", " + day.dayOfCamp);
+	// 	return this.isCounsellor(staff) ? result : true;
+	// }
+
+	colourCounsellorChangeover(assignment){
+    	const day = this.allDays[assignment.dayId];
+    	const staff = this.allStaff[assignment.staffId];
 		let result = staff.halfUnit == "colours" ? 
 			!day.colourChangeover :
 			true;
 		if (!result) isValidErrorMessages.push("colourCounsellorChangeover - " + staff.firstName + staff.lastName + ", " + day.dayOfCamp);
-		return this.isCounsellor(staff) ? result : true;
+		return this.isCounsellor(assignment) ? result : true;
 	}
-	isCounsellor(staff){
+	// isCounsellor(staff){
+	// 	return staff.role == "counsellor";
+	// }
+	isCounsellor(assignment){
+    	const staff = this.allStaff[assignment.staffId];
 		return staff.role == "counsellor";
 	}
 
