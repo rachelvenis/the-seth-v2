@@ -36,21 +36,22 @@ class DayController {
 
 
   create(req, res) {
-    const day = new DayEntity();
-    day.dayOfCamp = req.body.dayOfCamp;
-    day.rotatingOD = req.body.rotatingOD;
-    day.everyoneInCamp = req.body.everyoneInCamp;
-    day.colourChangeover = req.body.colourChangeover;
-    day.bunkNight = req.body.bunkNight;
-    day.colourWarsPrep = req.body.colourWarsPrep;
-    day.waldenGamesPrep = req.body.waldenGamesPrep;
-    day.unitFieldTrip = req.body.unitFieldTrip;
-    day.unitPlay = req.body.unitPlay;
-    day.noHeadStaffDayOff = req.body.noHeadStaffDayOff;
-    day.normalOD = req.body.normalOD;
-    day.halfUnitCanoeTrip = req.body.halfUnitCanoeTrip;
-    day.cabinOvernight = req.body.cabinOvernight;
-    day.useItOrLooseIt = req.body.useItOrLooseIt;
+    const day = new DayEntity(
+      req.body.dayOfCamp,
+      req.body.rotatingOD,
+      req.body.everyoneInCamp,
+      req.body.colourChangeover,
+      req.body.bunkNight,
+      req.body.colourWarsPrep,
+      req.body.waldenGamesPrep,
+      req.body.unitFieldTrip,
+      req.body.unitPlay,
+      req.body.noHeadStaffDayOff,
+      req.body.normalOD,
+      req.body.halfUnitCanoeTrip,
+      req.body.cabinOvernight,
+      req.body.useItOrLooseIt,
+      "June 28");
     
     this.dayModel.create(day)
       .then(this.controller.createSuccess(res))
@@ -58,7 +59,22 @@ class DayController {
   }
   
   update(req, res) {
-    const day = new DayEntity(req.params.id, req.body.dayOfCamp, req.body.rotatingOD, req.body.everyoneInCamp, req.body.colourChangeover, req.body.bunkNight, req.body.unitFieldTrip, req.body.unitPlay, req.body.noHeadStaffDayOff, req.body.normalOD, req.body.halfUnitCanoeTrip, req.body.cabinOvernight, req.body.useItOrLooseIt, req.body.colourWarsPrep, req.body.waldenGamesPrep);
+    const day = new DayEntity(req.params.id,
+      req.body.dayOfCamp,
+      req.body.rotatingOD,
+      req.body.everyoneInCamp,
+      req.body.colourChangeover,
+      req.body.bunkNight,
+      req.body.unitFieldTrip,
+      req.body.unitPlay,
+      req.body.noHeadStaffDayOff,
+      req.body.normalOD,
+      req.body.halfUnitCanoeTrip,
+      req.body.cabinOvernight,
+      req.body.useItOrLooseIt,
+      req.body.colourWarsPrep,
+      req.body.waldenGamesPrep,
+      "June 28");
   
     this.dayModel.update(day)
       .then(this.controller.editSuccess(res))

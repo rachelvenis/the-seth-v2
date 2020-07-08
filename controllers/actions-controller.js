@@ -86,7 +86,8 @@ class ActionController {
     dayOffValidation.areValid(req.body);
     const result = {
         assignments: this.prepare(dayOffValidation.validAssignments),
-        quotas: { eachValid: dayOffValidation.resultQuotas}
+        quotas: dayOffValidation.quotas,
+        cabinQuotas: dayOffValidation.cabinQuotas
     };
     res.json(result);
   }
@@ -95,11 +96,7 @@ class ActionController {
     const assignments = distributeODs.distributeEachDay(
         req.body.start, req.body.end);
     const result = {
-        assignments: this.prepareODs(assignments),
-        errors: {
-            eachValid: dayOffValidation.isValidErrorMessages,
-            areValid: dayOffValidation.areValidErrorMessages
-        }
+        assignments: this.prepareODs(assignments)
     };
     res.json(result);
   }

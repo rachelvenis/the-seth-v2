@@ -9,6 +9,8 @@ let assignmentId = 0;
 let staffId = 0;
 let dayId = 0;
 
+let firstDayOfCamp = "June 28";
+
 class LoadExampleData {
 	constructor(){
 		this.allDays = [];
@@ -39,7 +41,8 @@ class LoadExampleData {
 			  row['cabinOvernight'],
 			  parseInt(row['useItOrLooseIt']),
 			  row['colourWarsPrep'] == "TRUE",
-			  row['waldenGamesPrep'] == "TRUE"
+			  row['waldenGamesPrep'] == "TRUE",
+			  firstDayOfCamp
 			));
 			dayId++;
 		  })

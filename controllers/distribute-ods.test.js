@@ -20,7 +20,8 @@ let dayWithoutCanoeTrip = new DayEntity(0,
   		"", // cabinOvernight
   		0, // useItOrLooseIt
   		false, // colourWarsPrep
-  		false); // waldenGamesPrep
+  		false, // waldenGamesPrep
+      "June 28");
 
 let dayWithCanoeTrip = new DayEntity(0,
   		1, // dayOfCamp
@@ -36,7 +37,8 @@ let dayWithCanoeTrip = new DayEntity(0,
   		"comic head staff", // cabinOvernight
   		0, // useItOrLooseIt
   		false, // colourWarsPrep
-  		false); // waldenGamesPrep
+  		false, // waldenGamesPrep
+      "June 28");
 
 
 // beforeAll(() => {

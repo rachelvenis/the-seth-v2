@@ -36,9 +36,10 @@ const init = () => {
       unitPlay              TEXT,
       noHeadStaffDayOff     INTEGER NOT NULL,
       normalOD              INTEGER NOT NULL,
-      halfUnitCanoeTrip         TEXT,
+      halfUnitCanoeTrip     TEXT,
       cabinOvernight        TEXT,
-      useItOrLooseIt        INTEGER
+      useItOrLooseIt        INTEGER,
+      dayLabel              TEXT
     )`);
 
     db.run(`CREATE TABLE IF NOT EXISTS assignment(

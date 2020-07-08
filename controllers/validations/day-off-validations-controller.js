@@ -23,8 +23,56 @@ let halfUnitToUnitMapping = {
   "keepers": "seekers"
 }
 
-let validAssignments = [];
-let quotas = [];
+let cabinToHalfUnitMapping = {
+  "yellow": "colours",
+  "green": "colours",
+  "pink": "colours",
+  "orange": "colours",
+  "red": "colours",
+  "blue": "colours",
+  "white": "colours",
+  "purple": "colours",
+  "popeye": "loonies",
+  "bugs bunny": "loonies",
+  "spiderman": "loonies",
+  "muppets": "loonies",
+  "betty boop": "loonies",
+  "incredibles": "loonies",
+  "pink panther": "toonies",
+  "road runners": "toonies",
+  "kim possible": "toonies",
+  "bartman": "toonies",
+  "flintstones": "toonies",
+  "animaniacs": "toonies",
+  "gemini": "planets",
+  "libra": "planets",
+  "virgo": "planets",
+  "leo": "planets",
+  "taurus": "planets",
+  "aries": "planets",
+  "capricorn": "stars",
+  "orion": "stars",
+  "pisces": "stars",
+  "sagittarius": "stars",
+  "aquarius": "stars",
+  "scorpio": "stars",
+  "G1": "finders",
+  "G2": "finders",
+  "G3": "finders",
+  "G4": "finders",
+  "B1": "finders",
+  "B2": "finders",
+  "B3": "finders",
+  "B4": "finders",
+  "G5": "seekers",
+  "G6": "seekers",
+  "G7": "seekers",
+  "G8": "seekers",
+  "B5": "seekers",
+  "B6": "seekers",
+  "B7": "seekers",
+  "B8": "seekers"
+}
 
 // const currentYear = 2019
 
@@ -38,6 +86,39 @@ class DayOffValidationController extends ValidationController {
     this.isValidErrorMessages = [];
     this.areValidErrorMessages = [];
     this.validAssignments = [];
+    this.quotas = {
+      "colours": "success",
+      "loonies": "success",
+      "toonies": "success",
+      "planets": "success",
+      "stars": "success",
+      "finders": "success",
+      "keepers": "success",
+      "waterski": "success",
+      "swim": "success",
+      "sail": "success",
+      "canoeyak": "success",
+      "campcraft": "success",
+      "video": "success",
+      "theatre": "success",
+      "foodChain": "success",
+      "creativeArts": "success",
+      "climbing": "success",
+      "fitness": "success",
+      "sports": "success",
+      "tennis": "success",
+      "tuck": "success",
+      "adventureSports": "success"
+    };
+    this.cabinQuotas = {
+      "colours": [],
+      "loonies": [],
+      "toonies": [],
+      "planets": [],
+      "stars": [],
+      "finders": [],
+      "keepers": []
+    };
     this.applyPastAssignments();
   }
 
@@ -57,7 +138,6 @@ class DayOffValidationController extends ValidationController {
     let result = true;
     this.validAssignments = [];
     for (let i = 0; i < assignments.length; i++) {
-      console.log(assignments[i]);
       this.isValid(assignments[i]);
     }
     return result;
@@ -218,7 +298,8 @@ updateSeekerCabinQuotas(allStaff){
     let pastCount = 0;
     for (let i = 0; i < assignments.length; i++){
       let currentStaff = this.allStaff[assignments[i].staffId];
-      if (currentStaff.role == "counsellor" && !(halfUnitToUnitMapping[currentStaff.halfUnit] == "seekers")){
+      if (currentStaff.role == "counsellor" &&
+        !(halfUnitToUnitMapping[currentStaff.halfUnit] == "seekers")){
         pastCount = currentStaff.cabin in currentCabinCounts ? currentCabinCounts[currentStaff.cabin] : 0;
         currentCabinCounts[currentStaff.cabin] = pastCount + 1;
       }
@@ -226,8 +307,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = true;
     for(const cabin in currentCabinCounts) {
       if ((cabinCounsellorQuotas[cabin]/2) < currentCabinCounts[cabin]){
-        this.areValidErrorMessages.add("More than half of the counsellors in " +
-          cabin + " are trying to take a day off on the same day");
+        this.cabinQuotas[cabinToHalfUnitMapping[cabin]].push(cabin);
         let result = false;
       }
     }
@@ -249,8 +329,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = true;
     for(const quota in currentQuotaCounts) {
       if ((olderQuotas[quota]/3) < currentQuotaCounts[quota]){
-        this.areValidErrorMessages.add("More than one third of the staff on " + pair.getKey() +
-          " are trying to take days off on the same day");
+        this.quotas[quota] = "error";
         let result = false;
       }
     }
@@ -268,8 +347,7 @@ updateSeekerCabinQuotas(allStaff){
           currentSpecialtyCounts[currentStaff.cabin] : 0;
         newCount = pastCount + 1;
         if (newCount > specialtyQuotas[currentStaff.role]){
-          this.areValidErrorMessages.push("More than " + specialtyQuotas[currentStaff.role] +
-            " " + currentStaff.role + " staff are trying to take days off on the same day");
+          this.quotas[currentStaff.role] = "error";
           return false;
         }
         currentSpecialtyCounts[currentStaff.cabin] = newCount;
@@ -290,8 +368,7 @@ updateSeekerCabinQuotas(allStaff){
     let result = true;
     for(const quota in currentQuotaCounts) {
       if ((seekerCabinQuotas[quota]/2) < currentQuotaCounts[quota]){
-          this.areValidErrorMessages.push("More than " + quota +
-            " " + currentQuotaCounts[quota] + " staff are trying to take days off on the same day");
+        this.cabinQuotas[cabinToHalfUnitMapping[quota]].push(quota);
         let result = false;
       }
     }

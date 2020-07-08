@@ -22,7 +22,22 @@ class DayModel {
         const day = [];
         
         for(const row of rows) {
-          day.push(new  DayEntity(row.id, row.dayOfCamp, row.rotatingOD, row.everyoneInCamp, row.colourChangeover, row.bunkNight, row.unitFieldTrip, row.unitPlay, row.noHeadStaffDayOff, row.normalOD, row.halfUnitCanoeTrip, row.cabinOvernight, row.useItOrLooseIt, row.colourWarsPrep, row.waldenGamesPrep));
+          day.push(new  DayEntity(row.id,
+            row.dayOfCamp,
+            row.rotatingOD,
+            row.everyoneInCamp,
+            row.colourChangeover,
+            row.bunkNight,
+            row.unitFieldTrip,
+            row.unitPlay,
+            row.noHeadStaffDayOff,
+            row.normalOD,
+            row.halfUnitCanoeTrip,
+            row.cabinOvernight,
+            row.useItOrLooseIt,
+            row.colourWarsPrep,
+            row.waldenGamesPrep,
+            "June 28"));
         }
         return day;
       });
@@ -43,7 +58,22 @@ class DayModel {
     
     return this.model.findOne(sql, params)
       .then((row) => {
-        return new DayEntity(row.id, row.dayOfCamp, row.rotatingOD, row.everyoneInCamp, row.colourChangeover, row.bunkNight, row.unitFieldTrip, row.unitPlay, row.noHeadStaffDayOff, row.normalOD, row.halfUnitCanoeTrip, row.cabinOvernight, row.useItOrLooseIt, row.colourWarsPrep, row.waldenGamesPrep);
+        return new DayEntity(row.id,
+          row.dayOfCamp,
+          row.rotatingOD,
+          row.everyoneInCamp,
+          row.colourChangeover,
+          row.bunkNight,
+          row.unitFieldTrip,
+          row.unitPlay,
+          row.noHeadStaffDayOff,
+          row.normalOD,
+          row.halfUnitCanoeTrip,
+          row.cabinOvernight,
+          row.useItOrLooseIt,
+          row.colourWarsPrep,
+          row.waldenGamesPrep,
+          "June 28");
       });
   }
 
@@ -85,7 +115,8 @@ class DayModel {
         normalOD,
         halfUnitCanoeTrip,
         cabinOvernight,
-        useItOrLooseIt
+        useItOrLooseIt,
+        dayLabel
       ) VALUES (
         $dayOfCamp,
         $rotatingOD,
@@ -100,7 +131,8 @@ class DayModel {
         $normalOD,
         $halfUnitCanoeTrip,
         $cabinOvernight,
-        $useItOrLooseIt
+        $useItOrLooseIt,
+        $dayLabel
       )
     `;
     const params = {
@@ -117,7 +149,8 @@ class DayModel {
       $normalOD : day.normalOD,
       $halfUnitCanoeTrip : day.halfUnitCanoeTrip,
       $cabinOvernight : day.cabinOvernight,
-      $useItOrLooseIt : day.useItOrLooseIt
+      $useItOrLooseIt : day.useItOrLooseIt,
+      $dayLabel : day.dayLabel
     };
     
     return this.model.run(sql, params)
@@ -144,7 +177,8 @@ class DayModel {
         normalOD,
         halfUnitCanoeTrip,
         cabinOvernight,
-        useItOrLooseIt
+        useItOrLooseIt,
+        dayLabel
       ) VALUES (
         $id,
         $dayOfCamp,
@@ -161,6 +195,7 @@ class DayModel {
         $halfUnitCanoeTrip,
         $cabinOvernight,
         $useItOrLooseIt
+        $dayLabel
       )
     `;
     const params = {
@@ -178,7 +213,8 @@ class DayModel {
       $normalOD : day.normalOD,
       $halfUnitCanoeTrip : day.halfUnitCanoeTrip,
       $cabinOvernight : day.cabinOvernight,
-      $useItOrLooseIt : day.useItOrLooseIt
+      $useItOrLooseIt : day.useItOrLooseIt,
+      $dayLabel : day.dayLabel
     };
     
     return this.model.run(sql, params);
