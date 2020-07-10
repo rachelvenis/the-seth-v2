@@ -52,6 +52,16 @@ const init = () => {
       FOREIGN KEY(staffId) REFERENCES staff(id)
     )`);
 
+    db.run(`CREATE TABLE IF NOT EXISTS draft_assignment(
+      id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
+      dayId         INTEGER NOT NULL, 
+      staffId       INTEGER NOT NULL,
+      type          TEXT,
+      halfUnit      TEXT,
+      FOREIGN KEY(dayId) REFERENCES day(id),
+      FOREIGN KEY(staffId) REFERENCES staff(id)
+    )`);
+
     // db.run(`DROP TABLE IF EXISTS assignment`);
 
 };

@@ -1,5 +1,5 @@
 const Controller = require('./controller');
-const AssignmentModel  = require('../models/assignment-model');
+const DraftAssignmentModel  = require('../models/draft-assignment-model');
 const StaffModel  = require('../models/staff-model');
 const DayModel  = require('../models/day-model');
 const AssignmentEntity = require('../entities/assignment-entity');
@@ -29,7 +29,7 @@ class ActionController {
         dayOffValidation = new DayOffValidation(allStaff, pastAssignments, allDays);
         distributeODs = new DistributeODs(allStaff, pastAssignments, allDays);
     });
-    this.assignmentModel = new AssignmentModel();
+    this.draftAssignmentModel = new DraftAssignmentModel();
     this.staffModel = new StaffModel();
     this.dayModel = new DayModel();
   }
@@ -40,7 +40,7 @@ class ActionController {
     let allDays = [];
     let allStaff = [];
     let allAssignments = [];
-    this.assignmentModel.findAll().then((assignments) => {
+    this.draftAssignmentModel.findAll().then((assignments) => {
         allAssignments = assignments;
         this.staffModel.findAll().then((staff) => {
             allStaff = staff;
@@ -68,22 +68,27 @@ class ActionController {
     });
   }
 
-  preprepare(inputs) {
+  preprepareDOs(inputs) {
     let result = [];
     for (const i in inputs) {
         result.push(new AssignmentEntity(
                 0,
                 inputs[i].staffId,
                 inputs[i].dayId,
-                "type",
+                0,
                 "halfUnit"));
     }
     return result;
   }
 
   validateDO(req, res) {
-    dayOffValidation.eachValid(this.preprepare(req.body));
+    dayOffValidation.eachValid(this.preprepareDOs(req.body));
     dayOffValidation.areValid(req.body);
+    this.draftAssignmentModel.drop();
+    this.draftAssignmentModel.createTable();
+    for (let i in dayOffValidation.validAssignments) {
+        this.draftAssignmentModel.create(dayOffValidation.validAssignments[i]);
+    }
     const result = {
         assignments: this.prepare(dayOffValidation.validAssignments),
         quotas: dayOffValidation.quotas,

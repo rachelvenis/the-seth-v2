@@ -6,8 +6,9 @@ class ODAssignmentEntity {
 	this.id = 0; 
 	this.staffId = staffId; 
 	this.dayId = dayId; 
-	this.type = "OD"; 
+	this.type = 1; 
 	this.halfUnit = halfUnit;
+	this.errorMessages = [];
   }
 }
 

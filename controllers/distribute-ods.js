@@ -32,7 +32,6 @@ class DistributeODs {
     distributeEachDay(start_day_index, end_day_index) {
         let temp_result;
         for(let i = start_day_index; i <= end_day_index; i++) {
-            console.log(i);
             this.getODAssignments(this.allDays[i]);
         }
 

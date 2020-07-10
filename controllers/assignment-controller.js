@@ -1,5 +1,6 @@
 const Controller = require('./controller');
 const AssignmentModel  = require('../models/assignment-model');
+const DraftAssignmentModel  = require('../models/draft-assignment-model');
 const AssignmentEntity = require('../entities/assignment-entity');
 
 /**
@@ -9,10 +10,17 @@ class AssignmentController {
   constructor() {
     this.controller = new Controller();
     this.assignmentModel = new AssignmentModel();
+    this.draftAssignmentModel = new DraftAssignmentModel();
   }
   
   findAll(res) {
     this.assignmentModel.findAll()
+      .then(this.controller.findSuccess(res))
+      .catch(this.controller.findError(res));
+  }
+  
+  findAllDraft(res) {
+    this.draftAssignmentModel.findAll()
       .then(this.controller.findSuccess(res))
       .catch(this.controller.findError(res));
   }

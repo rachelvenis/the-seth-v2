@@ -40,6 +40,16 @@ const assignmentModel = new AssignmentModel();
 //   role              TEXT NOT NULL
 // )`);
 
+    db.db.run(`CREATE TABLE IF NOT EXISTS draft_assignment(
+      id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
+      dayId         INTEGER NOT NULL, 
+      staffId       INTEGER NOT NULL,
+      type          TEXT,
+      halfUnit      TEXT,
+      FOREIGN KEY(dayId) REFERENCES day(id),
+      FOREIGN KEY(staffId) REFERENCES staff(id)
+    )`);
+
 // const loadExampleData = new LoadExampleData();
 // loadExampleData.run().then((results) => {
 // 	// pastAssignments = results.allPastAssignments;
@@ -52,14 +62,14 @@ const assignmentModel = new AssignmentModel();
 // 	// allDays = results.allDays;
 //   });
 
-const loadExampleData = new LoadExampleData();
-loadExampleData.run().then((results) => {
-	// pastAssignments = results.allPastAssignments;
-	// newAssignments = results.allNewAssignments;
-    // db.init();
-	for(const assignment of results.allPastAssignments) {
-		console.log(assignment.halfUnit);
-		assignmentModel.create(assignment);
-	};
-	// allDays = results.allDays;
-  });
+// const loadExampleData = new LoadExampleData();
+// loadExampleData.run().then((results) => {
+// 	// pastAssignments = results.allPastAssignments;
+// 	// newAssignments = results.allNewAssignments;
+//     // db.init();
+// 	for(const assignment of results.allPastAssignments) {
+// 		console.log(assignment.halfUnit);
+// 		assignmentModel.create(assignment);
+// 	};
+// 	// allDays = results.allDays;
+//   });
