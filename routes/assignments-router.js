@@ -9,8 +9,12 @@ router.get('/', (req, res) => {
   assignmentController.findAll(res);
 });
 
-router.get('/draft', (req, res) => {
-  assignmentController.findAllDraft(res);
+router.get('/draftDO', (req, res) => {
+  assignmentController.findAllDODraft(res);
+});
+
+router.get('/draftOD', (req, res) => {
+  assignmentController.findAllODDraft(res);
 });
 
 router.get('/:id', (req, res) => {

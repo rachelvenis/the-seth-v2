@@ -49,6 +49,7 @@ class Model {
           resolve(this.lastID);
         }
         else if(this.changes === 0) {
+          resolve(this.lastID);
             console.log('Entity Not Found');
           // reject(new ModelError(21, 'Entity Not Found'));
         }

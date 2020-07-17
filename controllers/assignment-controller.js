@@ -19,9 +19,17 @@ class AssignmentController {
       .catch(this.controller.findError(res));
   }
   
-  findAllDraft(res) {
-    this.draftAssignmentModel.findAll()
-      .then(this.controller.findSuccess(res))
+  findAllDODraft(res) {
+    this.draftAssignmentModel.findAllDO()
+      .then(result =>
+        this.controller.findSuccess(res)(this.prepare(result)))
+      .catch(this.controller.findError(res));
+  }
+
+  findAllODDraft(res) {
+    this.draftAssignmentModel.findAllOD()
+      .then(result =>
+        this.controller.findSuccess(res)(this.prepareOD(result)))
       .catch(this.controller.findError(res));
   }
   
@@ -41,6 +49,28 @@ class AssignmentController {
   //     .catch(this.controller.findError(res));
   // }
 
+  prepare(assignments) {
+    let results = [];
+    for (let i = 0; i < assignments.length; i++) {
+        results.push([
+            assignments[i].staffId,
+            assignments[i].dayId,
+            assignments[i].errorMessages]);
+    }
+    return results;
+  }
+
+  prepareOD(assignments) {
+    let results = [];
+    for (let i = 0; i < assignments.length; i++) {
+        results.push([
+            assignments[i].staffId,
+            assignments[i].dayId,
+            assignments[i].halfUnit,
+            assignments[i].errorMessages]);
+    }
+    return results;
+  }
 
 
   create(req, res) {

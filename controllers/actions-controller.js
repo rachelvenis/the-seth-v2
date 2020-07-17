@@ -84,26 +84,43 @@ class ActionController {
   validateDO(req, res) {
     dayOffValidation.eachValid(this.preprepareDOs(req.body));
     dayOffValidation.areValid(req.body);
-    this.draftAssignmentModel.drop();
-    this.draftAssignmentModel.createTable();
-    for (let i in dayOffValidation.validAssignments) {
-        this.draftAssignmentModel.create(dayOffValidation.validAssignments[i]);
-    }
-    const result = {
-        assignments: this.prepare(dayOffValidation.validAssignments),
-        quotas: dayOffValidation.quotas,
-        cabinQuotas: dayOffValidation.cabinQuotas
-    };
-    res.json(result);
+    this.draftAssignmentModel.drop().then(() => {
+        this.draftAssignmentModel.AndCreate().then(() => {
+            for (let i in dayOffValidation.validAssignments) {
+                this.draftAssignmentModel.create(dayOffValidation.validAssignments[i]);
+            }
+            const result = {
+                assignments: this.prepare(dayOffValidation.validAssignments),
+                quotas: dayOffValidation.quotas,
+                cabinQuotas: dayOffValidation.cabinQuotas
+            };
+            res.json(result)});
+        })
   }
 
   distributeOD(req, res) {
     const assignments = distributeODs.distributeEachDay(
         req.body.start, req.body.end);
-    const result = {
-        assignments: this.prepareODs(assignments)
-    };
-    res.json(result);
+    let existing_do_assignments;
+    this.draftAssignmentModel.findAllDO().then(r => {
+        existing_do_assignments = r;
+        this.draftAssignmentModel.drop().then(() => {
+            this.draftAssignmentModel.AndCreate().then(() => {
+                for (let i in existing_do_assignments) {
+                    this.draftAssignmentModel.create(existing_do_assignments[i]);
+                }
+                Object.entries(assignments).map(([k,v]) => {
+                    for (let i in v) {
+                        this.draftAssignmentModel.create(v[i]);
+                    }
+                });
+                const result = {
+                    assignments: this.prepareODs(assignments)
+                };
+                res.json(result);
+            })
+        })
+    })
   }
 
   prepareODs(assignments) {

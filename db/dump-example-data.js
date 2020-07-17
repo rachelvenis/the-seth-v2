@@ -1,5 +1,6 @@
 const StaffModel  = require('../models/staff-model');
 const AssignmentModel  = require('../models/assignment-model');
+const DraftAssignmentModel  = require('../models/draft-assignment-model');
 
 const LoadExampleData = require('../loadExampleData');
 const db = require('./db');
@@ -40,15 +41,21 @@ const assignmentModel = new AssignmentModel();
 //   role              TEXT NOT NULL
 // )`);
 
-    db.db.run(`CREATE TABLE IF NOT EXISTS draft_assignment(
-      id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
-      dayId         INTEGER NOT NULL, 
-      staffId       INTEGER NOT NULL,
-      type          TEXT,
-      halfUnit      TEXT,
-      FOREIGN KEY(dayId) REFERENCES day(id),
-      FOREIGN KEY(staffId) REFERENCES staff(id)
-    )`);
+let draftAssignmentModel = new DraftAssignmentModel();
+
+draftAssignmentModel.dropAndCreate();
+    // db.db.run(`
+    //   DROP TABLE IF EXISTS draft_assignment`).then(
+    //   () => {
+    // db.db.run(`
+    //   CREATE TABLE IF NOT EXISTS draft_assignment(
+    //   id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
+    //   dayId         INTEGER NOT NULL, 
+    //   staffId       INTEGER NOT NULL,
+    //   type          TEXT,
+    //   halfUnit      TEXT,
+    //   FOREIGN KEY(dayId) REFERENCES day(id),
+    //   FOREIGN KEY(staffId) REFERENCES staff(id)`)});
 
 // const loadExampleData = new LoadExampleData();
 // loadExampleData.run().then((results) => {

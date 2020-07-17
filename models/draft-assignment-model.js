@@ -28,6 +28,47 @@ class DraftAssignmentModel {
       });
   }
 
+  
+  findAllDO() {
+    const sql = `
+      SELECT
+          *
+      FROM
+          draft_assignment
+      WHERE type = '0'
+    `;
+    
+    return this.model.findAll(sql)
+      .then((rows) => {
+        const assignment = [];
+        
+        for(const row of rows) {
+          assignment.push(new AssignmentEntity(row.id, row.staffId, row.dayId, row.type, row.halfUnit));
+        }
+        return assignment;
+      });
+  }
+  
+  findAllOD() {
+    const sql = `
+      SELECT
+          *
+      FROM
+          draft_assignment
+      WHERE type = '1'
+    `;
+    
+    return this.model.findAll(sql)
+      .then((rows) => {
+        const assignment = [];
+        
+        for(const row of rows) {
+          assignment.push(new AssignmentEntity(row.id, row.staffId, row.dayId, row.type, row.halfUnit));
+        }
+        return assignment;
+      });
+  }
+
   findById(id) {
     const sql = `
       SELECT
@@ -141,24 +182,43 @@ class DraftAssignmentModel {
   
   drop() {
     //TODO remove rows in squad_users table
+    // const sql = ``;
+    console.log("drop");
     const sql = `DROP TABLE IF EXISTS draft_assignment`;
     
     return this.model.run(sql, {});
   }
-
-  createTable() {
-    const sql = `CREATE TABLE IF NOT EXISTS draft_assignment(
+  
+  AndCreate() {
+    //TODO remove rows in squad_users table
+    // const sql = ``;
+    console.log("AndCreate");
+    const sql = `
+      CREATE TABLE IF NOT EXISTS draft_assignment(
       id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
       dayId         INTEGER NOT NULL, 
       staffId       INTEGER NOT NULL,
       type          TEXT,
       halfUnit      TEXT,
       FOREIGN KEY(dayId) REFERENCES day(id),
-      FOREIGN KEY(staffId) REFERENCES staff(id)
-    )`;
+      FOREIGN KEY(staffId) REFERENCES staff(id))`;
     
     return this.model.run(sql, {});
   }
+
+/*
+      CREATE TABLE IF NOT EXISTS draft_assignment(
+      id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
+      dayId         INTEGER NOT NULL, 
+      staffId       INTEGER NOT NULL,
+      type          TEXT,
+      halfUnit      TEXT,
+      FOREIGN KEY(dayId) REFERENCES day(id),
+      FOREIGN KEY(staffId) REFERENCES staff(id))
+*/
+
+
+
 //   findByTab(id) {
 //     const sql = `
 //       SELECT
