@@ -35,37 +35,68 @@ class ActionController {
   }
 
   generatePDF(res) {
-    const doc = new PDFDocument();
-    doc.pipe(res);
+    this.doc = new PDFDocument();
+    this.doc.pipe(res);
     let allDays = [];
     let allStaff = [];
     let allAssignments = [];
-    this.draftAssignmentModel.findAll().then((assignments) => {
+    this.draftAssignmentModel.findAllByDay().then((assignments) => {
         allAssignments = assignments;
         this.staffModel.findAll().then((staff) => {
             allStaff = staff;
             this.dayModel.findAll().then((days) => {
                 allDays = days;
-                for (let assignment in allAssignments) {
-                    let result = "";
-                    for (let s in allStaff) {
-                        if (allStaff[s].id == allAssignments[assignment].staffId) {
-                            result += allStaff[s].firstName + " " + allStaff[s].lastName; 
-                        }
-                    }
-                    result += " - "
-                    for (let s in allDays) {
-                        if (allDays[s].id == allAssignments[assignment].dayId) {
-                            result += allDays[s].dayOfCamp; 
-                        }
-                    }
-                    result += " - " + (allAssignments[assignment].type == 1 ? "OD - " + allAssignments[assignment].halfUnit : "Day Off");
-                    doc.text(result);
-                }
-                doc.end();
+                this.formattedAssignments(allStaff, days, allAssignments);
+                this.doc.end();
             });
         });
     });
+  }
+
+  getDayLabel(dayId, days) {
+    for (let s in days) {
+        if (days[s].id == dayId) {
+            return days[s].dayLabel;
+        }
+    }
+    return "unknown day";
+  }
+
+  getStaffName(staffId, staff) {
+    for (let s in staff) {
+        if (staff[s].id == staffId) {
+            return staff[s].lastName + ", " + staff[s].firstName; 
+        }
+    }
+    return "unknown staff";
+  }
+
+  formattedAssignments(staff, days, assignments) {
+    let results = "";
+    let lastDayId = "";
+    let height = 50;
+    for (let assignment in assignments) {
+        let result = "";
+        if (assignments[assignment].dayId != lastDayId){
+            height+=10;
+            this.doc.fontSize(14);
+            this.doc.text(
+                this.getDayLabel(assignments[assignment].dayId, days),
+                40, height);
+            this.doc.fontSize(10);
+            // result += this.getDayLabel(assignments[assignment].dayId, days) + "\n"; 
+            lastDayId = assignments[assignment].dayId;
+            height+=18;
+        }
+        this.doc.text(
+            this.getStaffName(assignments[assignment].staffId, staff),
+                40, height);
+        this.doc.text(
+            (assignments[assignment].type == 1 ? "OD - " + assignments[assignment].halfUnit : "Day Off"),
+                160, height);
+        height+=14;
+    }
+    // this.doc.text(results, {columns: 2}, 400, 100);
   }
 
   preprepareDOs(inputs) {

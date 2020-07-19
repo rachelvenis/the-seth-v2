@@ -27,6 +27,29 @@ class DraftAssignmentModel {
         return assignment;
       });
   }
+  
+  findAllByDay() {
+    const sql = `
+      SELECT
+          *
+      FROM
+          draft_assignment da
+      JOIN
+          staff s
+      ON s.id = da.staffId
+      ORDER BY dayId, lastName
+    `;
+    
+    return this.model.findAll(sql)
+      .then((rows) => {
+        const assignment = [];
+        
+        for(const row of rows) {
+          assignment.push(new AssignmentEntity(row.id, row.staffId, row.dayId, row.type, row.halfUnit));
+        }
+        return assignment;
+      });
+  }
 
   
   findAllDO() {
