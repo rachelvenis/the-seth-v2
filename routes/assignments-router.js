@@ -5,16 +5,19 @@ const router = express.Router();
 const AssignmentController = require('../controllers/assignment-controller');
 const assignmentController = new AssignmentController();
 
+const DraftAssignmentController = require('../controllers/draft-assignment-controller');
+const draftAssignmentController = new DraftAssignmentController();
+
 router.get('/', (req, res) => {
   assignmentController.findAll(res);
 });
 
 router.get('/draftDO', (req, res) => {
-  assignmentController.findAllDODraft(res);
+  draftAssignmentController.findAllDODraft(res);
 });
 
 router.get('/draftOD', (req, res) => {
-  assignmentController.findAllODDraft(res);
+  draftAssignmentController.findAllODDraft(res);
 });
 
 router.get('/:id', (req, res) => {

@@ -10,6 +10,14 @@ class AssignmentEntity {
 	this.halfUnit = halfUnit;
 	this.errorMessages = [];
   }
+
+  set_error_messages(errorMessages){
+  	if (errorMessages[0] == null) {
+		this.errorMessages = [null];
+	} else {
+		this.errorMessages = errorMessages;
+	}
+  }
 }
 
 module.exports = AssignmentEntity;

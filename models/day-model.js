@@ -160,7 +160,6 @@ class DayModel {
   }
   
   update(day) {
-    console.log(day);
     const sql = `
       REPLACE INTO day (
         id,

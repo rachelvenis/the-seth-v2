@@ -1,5 +1,6 @@
 const Controller = require('./controller');
 const AssignmentModel  = require('../models/assignment-model');
+const DraftAssignmentModel  = require('../models/draft-assignment-model');
 const AssignmentEntity = require('../entities/assignment-entity');
 
 /**
@@ -9,12 +10,32 @@ class AssignmentController {
   constructor() {
     this.controller = new Controller();
     this.assignmentModel = new AssignmentModel();
+    this.draftAssignmentModel = new DraftAssignmentModel();
   }
   
   findAll(res) {
     this.assignmentModel.findAll()
       .then(this.controller.findSuccess(res))
       .catch(this.controller.findError(res));
+  }
+  
+  findAllDODraft(res) {
+    this.draftAssignmentModel.findAllDO()
+      .then(result =>
+        this.controller.findSuccess(res)(this.prepare(result)))
+      .catch(this.controller.findError(res));
+  }
+
+  findAllODDraft(res) {
+    this.draftAssignmentModel.findAllOD()
+      .then(result => {
+        return this.controller.findSuccess(res)(this.prepareOD(result))
+      }).catch(this.controller.findError(res));
+    // this.draftAssignmentModel.findAllOD()
+    //   .then(result => {
+    //     return this.controller.findSuccess(res)(this.prepareOD(result))
+    //   }
+    //   ).catch(this.controller.findError(res));
   }
   
   findById(req, res) {

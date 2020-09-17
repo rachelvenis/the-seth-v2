@@ -22,9 +22,18 @@ class StaffModel {
         const staff = [];
         
         for(const row of rows) {
-          staff.push(new StaffEntity(row.id, row.firstName, row.lastName, row.birth_year, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender));
+          staff.push(new StaffEntity(
+            row.id,
+            row.firstName,
+            row.lastName,
+            row.birth_year,
+            row.half_unit,
+            row.new_to_walden,
+            row.staff_type,
+            row.cabin,
+            row.role,
+            row.gender));
         }
-        
         return staff;
       });
   }
@@ -44,7 +53,17 @@ class StaffModel {
     
     return this.model.findOne(sql, params)
       .then((row) => {
-        return new StaffEntity(row.id, row.firstName, row.lastName, row.birth_year, row.half_unit, row.new_to_walden, row.head_staff, row.cabin, row.role, row.gender);
+        return new StaffEntity(
+          row.id,
+          row.firstName,
+          row.lastName,
+          row.birth_year,
+          row.half_unit,
+          row.new_to_walden,
+          row.staff_type,
+          row.cabin,
+          row.role,
+          row.gender);
       });
   }
 
@@ -88,6 +107,7 @@ class StaffModel {
         cabin,
         gender,
         last_day_off,
+        staff_type,
         role
       ) VALUES (
         $id,
@@ -106,6 +126,7 @@ class StaffModel {
         $cabin,
         $gender,
         $last_day_off,
+        $staff_type,
         $role
       )
     `;
@@ -113,19 +134,20 @@ class StaffModel {
         $id: staff.id,
         $firstName: staff.firstName,
         $lastName: staff.lastName,
-        $od_count: staff.od_count,
-        $allowed_days_off: staff.allowed_days_off,
-        $colour_wars_duty: staff.colour_wars_duty,
-        $walden_games_duty: staff.walden_games_duty,
-        $rotating_od: staff.rotating_od,
+        $od_count: staff.ODCount,
+        $allowed_days_off: staff.allowedDaysOff,
+        $colour_wars_duty: staff.colourWarsDuty,
+        $walden_games_duty: staff.waldenGamesDuty,
+        $rotating_od: staff.rotatingOD,
         $birth_year: staff.birthYear,
         $half_unit: staff.halfUnit,
-        $new_to_walden: staff.new_to_walden,
-        $day_off_count: staff.day_off_count,
-        $head_staff: staff.head_staff,
+        $new_to_walden: staff.newToWalden,
+        $day_off_count: staff.dayOffCount,
+        $head_staff: staff.headStaff,
         $cabin: staff.cabin,
         $gender: staff.gender,
-        $last_day_off: staff.last_day_off,
+        $last_day_off: staff.lastDayOff,
+        $staff_type: staff.staffType,
         $role: staff.role
     };
     
@@ -146,6 +168,7 @@ class StaffModel {
         cabin,
         role,
         gender,
+        staff_type,
         name
       ) VALUES (
         $id,
@@ -156,6 +179,7 @@ class StaffModel {
         $cabin,
         $role,
         $gender,
+        $staff_type,
         $name
       )
     `;
@@ -168,6 +192,7 @@ class StaffModel {
       $cabin : staff.cabin,
       $role : staff.role,
       $gender : staff.gender,
+      $staff_type : staff.staff_type,
       $name : staff.name
     };
     

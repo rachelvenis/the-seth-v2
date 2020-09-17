@@ -67,10 +67,10 @@ class LoadExampleData {
 			  parseInt(row['birthYear']),
 			  row['halfUnit'],
 			  row['newToWalden'] == "TRUE",
-			  row['staffType'],
+			  parseInt(row['staffType']),
 			  row['cabin'],
 			  row['role'],
-			  row['gender'],
+			  row['gender']
 			));
 			staffId++;
 		  })

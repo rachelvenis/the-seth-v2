@@ -59,9 +59,7 @@ class DistributeODs {
                     if (staff == null) {
                         console.log("error message in getODAssignments, couldn't " +
                             "find an " + i + "th " + gender + " for " + halfUnit);
-                        // if (!result) this.isValidErrorMessages.push("hasColourWarsDuties - " + staff.name);
                     } else {
-                        // console.log("assigned " + staff.firstName + " " + staff.lastName + ", " + halfUnit + ", " + gender);
                         let days = this.assignedODs[day.id];
                         if (days == null) {
                             days = [];

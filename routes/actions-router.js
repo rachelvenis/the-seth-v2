@@ -14,7 +14,6 @@ router.post('/distributeOD', (req, res) => {
 });
 
 router.get('/generatePDF', (req, res) => {
-	// console.log('hey dude');
   actionsController.generatePDF(res);
 });
 

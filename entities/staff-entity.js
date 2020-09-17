@@ -17,6 +17,7 @@ class StaffEntity {
   this.dayOffCount = 0;
   this.lastDayOff = 0;
   this.allowedDaysOff = 6;
+  this.headStaff = false;
   }
 
   setColourWarsDuty(value) {

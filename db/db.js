@@ -20,6 +20,7 @@ const init = () => {
       cabin             TEXT NOT NULL,
       gender            TEXT NOT NULL,
       last_day_off      INTEGER,
+      staff_type        INTEGER,
       role              TEXT NOT NULL
     )`);
 
@@ -52,7 +53,25 @@ const init = () => {
       FOREIGN KEY(staffId) REFERENCES staff(id)
     )`);
 
-    db.run(`CREATE TABLE IF NOT EXISTS draft_assignment(
+    db.run(`CREATE TABLE IF NOT EXISTS draft_error(
+      id                  INTEGER PRIMARY KEY  AUTOINCREMENT, 
+      draftAssignmentId   INTEGER NOT NULL, 
+      message             TEXT,
+      status              TEXT,
+      FOREIGN KEY(draftAssignmentId) REFERENCES draft_assignment(id)
+    )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS draft_od_assignment(
+      id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
+      dayId         INTEGER NOT NULL, 
+      staffId       INTEGER NOT NULL,
+      type          TEXT,
+      halfUnit      TEXT,
+      FOREIGN KEY(dayId) REFERENCES day(id),
+      FOREIGN KEY(staffId) REFERENCES staff(id)
+    )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS draft_do_assignment(
       id            INTEGER PRIMARY KEY  AUTOINCREMENT, 
       dayId         INTEGER NOT NULL, 
       staffId       INTEGER NOT NULL,

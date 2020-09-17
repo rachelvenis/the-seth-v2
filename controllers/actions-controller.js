@@ -1,5 +1,6 @@
 const Controller = require('./controller');
 const DraftAssignmentModel  = require('../models/draft-assignment-model');
+const AssignmentModel  = require('../models/assignment-model');
 const StaffModel  = require('../models/staff-model');
 const DayModel  = require('../models/day-model');
 const AssignmentEntity = require('../entities/assignment-entity');
@@ -11,19 +12,39 @@ const fs = require('fs');
 
 
 let pastAssignments = [];
-let newAssignments = [];
 let allStaff = [];
 let allDays = [];
 
 let dayOffValidation;
 let distributeODs;
 
+let staffModel = new StaffModel();
+let dayModel = new DayModel();
+let assignmentModel = new AssignmentModel();
+
+function hereweare(){
+  return new Promise((resolve, reject) => {
+    let allDays = [];
+    let allStaff = [];
+    let allNewAssignments = [];
+    let allPastAssignments = [];
+    dayModel.findAll().then((days) => {
+      allDays = days;
+      staffModel.findAll().then((staff) => {
+        allStaff = staff;
+        assignmentModel.findAll().then((pastAssignments) => {
+            allPastAssignments = pastAssignments;
+            resolve({allDays, allStaff, allPastAssignments, allNewAssignments});
+        });
+      });
+    });
+  });
+}
+
 class ActionController {
   constructor() {
-    const loadExampleData = new LoadExampleData();
-    loadExampleData.run().then((results) => {
+    hereweare().then((results) => {
         pastAssignments = results.allPastAssignments;
-        newAssignments = results.allNewAssignments;
         allStaff = results.allStaff;
         allDays = results.allDays;
         dayOffValidation = new DayOffValidation(allStaff, pastAssignments, allDays);
@@ -46,7 +67,36 @@ class ActionController {
             allStaff = staff;
             this.dayModel.findAll().then((days) => {
                 allDays = days;
-                this.formattedAssignments(allStaff, days, allAssignments);
+                let results = "";
+                let lastDayId = "";
+                let height = 50;
+                let column_two = false;
+                for (let assignment in allAssignments) {
+                    let result = "";
+                    if (allAssignments[assignment].dayId != lastDayId){
+                        height+=10;
+                        this.doc.fontSize(14);
+                        this.doc.text(
+                            this.getDayLabel(allAssignments[assignment].dayId, allDays),
+                            (column_two ? 260 : 0) + 40, height);
+                        this.doc.fontSize(10);
+                        // result += this.getDayLabel(assignments[assignment].dayId, days) + "\n"; 
+                        lastDayId = allAssignments[assignment].dayId;
+                        height+=18;
+                    }
+                    this.doc.text(
+                        this.getStaffName(allAssignments[assignment].staffId, allStaff),
+                            (column_two ? 260 : 0) + 40, height);
+                    this.doc.text(
+                        (allAssignments[assignment].type == 1 ? "OD - " + allAssignments[assignment].halfUnit : "Day Off"),
+                            (column_two ? 260 : 0) +  160, height);
+                    height+=14;
+                    if (height > 721) {
+                        height = 50;
+                        if (column_two) this.doc.addPage();
+                        column_two = !column_two;
+                    }
+                }
                 this.doc.end();
             });
         });
@@ -71,34 +121,6 @@ class ActionController {
     return "unknown staff";
   }
 
-  formattedAssignments(staff, days, assignments) {
-    let results = "";
-    let lastDayId = "";
-    let height = 50;
-    for (let assignment in assignments) {
-        let result = "";
-        if (assignments[assignment].dayId != lastDayId){
-            height+=10;
-            this.doc.fontSize(14);
-            this.doc.text(
-                this.getDayLabel(assignments[assignment].dayId, days),
-                40, height);
-            this.doc.fontSize(10);
-            // result += this.getDayLabel(assignments[assignment].dayId, days) + "\n"; 
-            lastDayId = assignments[assignment].dayId;
-            height+=18;
-        }
-        this.doc.text(
-            this.getStaffName(assignments[assignment].staffId, staff),
-                40, height);
-        this.doc.text(
-            (assignments[assignment].type == 1 ? "OD - " + assignments[assignment].halfUnit : "Day Off"),
-                160, height);
-        height+=14;
-    }
-    // this.doc.text(results, {columns: 2}, 400, 100);
-  }
-
   preprepareDOs(inputs) {
     let result = [];
     for (const i in inputs) {
@@ -115,41 +137,43 @@ class ActionController {
   validateDO(req, res) {
     dayOffValidation.eachValid(this.preprepareDOs(req.body));
     dayOffValidation.areValid(req.body);
-    this.draftAssignmentModel.drop().then(() => {
-        this.draftAssignmentModel.AndCreate().then(() => {
-            for (let i in dayOffValidation.validAssignments) {
-                this.draftAssignmentModel.create(dayOffValidation.validAssignments[i]);
-            }
-            const result = {
-                assignments: this.prepare(dayOffValidation.validAssignments),
-                quotas: dayOffValidation.quotas,
-                cabinQuotas: dayOffValidation.cabinQuotas
-            };
-            res.json(result)});
+    this.draftAssignmentModel.dropDODrafts().then(() => {
+        this.draftAssignmentModel.AndCreateDODrafts().then(() => {
+            this.draftAssignmentModel.dropDraftsErrors().then(() => {
+                this.draftAssignmentModel.AndCreateDODraftErrors().then(() => {
+                    for (let i in dayOffValidation.validAssignments) {
+                        this.draftAssignmentModel.createDO(dayOffValidation.validAssignments[i]).then((newod) => {
+                            for(let e in dayOffValidation.validAssignments[i].errorMessages) {
+                                this.draftAssignmentModel.createError(newod,
+                                    dayOffValidation.validAssignments[i].errorMessages[e]);
+                            }
+                        });
+                    }
+                    const result = {
+                        assignments: this.prepare(dayOffValidation.validAssignments),
+                        quotas: dayOffValidation.quotas,
+                        cabinQuotas: dayOffValidation.cabinQuotas
+                    };
+                    res.json(result)});
+                })
+            })
         })
   }
 
   distributeOD(req, res) {
     const assignments = distributeODs.distributeEachDay(
         req.body.start, req.body.end);
-    let existing_do_assignments;
-    this.draftAssignmentModel.findAllDO().then(r => {
-        existing_do_assignments = r;
-        this.draftAssignmentModel.drop().then(() => {
-            this.draftAssignmentModel.AndCreate().then(() => {
-                for (let i in existing_do_assignments) {
-                    this.draftAssignmentModel.create(existing_do_assignments[i]);
+    this.draftAssignmentModel.dropODDrafts().then(() => {
+        this.draftAssignmentModel.AndCreateODDrafts().then(() => {
+            Object.entries(assignments).map(([k,v]) => {
+                for (let i in v) {
+                    this.draftAssignmentModel.createOD(v[i]);
                 }
-                Object.entries(assignments).map(([k,v]) => {
-                    for (let i in v) {
-                        this.draftAssignmentModel.create(v[i]);
-                    }
-                });
-                const result = {
-                    assignments: this.prepareODs(assignments)
-                };
-                res.json(result);
-            })
+            });
+            const result = {
+                assignments: this.prepareODs(assignments)
+            };
+            res.json(result);
         })
     })
   }
