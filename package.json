@@ -7,7 +7,7 @@
     "devserver": "./node_modules/nodemon/bin/nodemon.js index.js"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "browserify": "^16.5.1",
